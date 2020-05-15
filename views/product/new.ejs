@@ -1,0 +1,14 @@
+<h1>Creat a New product to <%=company.name%></h1>
+
+
+<form action="/company/<%=company._id%>/product" method="POST">
+    <input type="text" name="product[name]" placeholder="name">
+    <input type="text" name="product[image]" placeholder="image">
+    <input type="text" name="product[price]" placeholder="price">
+    
+    <button>Submit!</button>
+
+
+</form>
+
+

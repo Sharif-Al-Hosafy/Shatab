@@ -1,0 +1,11 @@
+<h1>This is the show template of company,showing all products of that company</h1>
+
+<a href="/company/<%=company._id%>/product/new">Add new products</a>
+
+<%company.products.forEach(function(product){%>
+    <p><strong><%=product.name%></strong>-<%=product.image%> - <%=product.price%></p>
+    <a href="/product/<%=product._id%>/add-to-cart">Add to Cart</a>
+   
+    <%})%>
+    
+

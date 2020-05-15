@@ -1,0 +1,18 @@
+<h4><%=constructor.name%></h4>
+   <h4><%=constructor.rating%></h4>
+   <h4><%=constructor.email%></h4>
+   <h4><%=constructor.address%></h4>
+   <h4><%=constructor.phonenumber%></h4>
+   <h4><%=constructor.pricePerHour%></h4>
+   
+   <a href="/constructors/<%=constructor._id%>/comments/new">Add New Comment</a>
+   <%constructor.comments.forEach(function(comment){%>
+    <p><strong><%=comment.author.username%></strong> - <%=comment.text%></p>
+    <%})%>
+    
+    
+    <a href="/constructors/<%=constructor._id%>/request/new">send to this constructor</a>
+
+   <a href="/constructorhelp">Back</a>
+
+  

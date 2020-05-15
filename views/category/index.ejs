@@ -1,0 +1,10 @@
+<% category.forEach(function(category){%>
+    <h4><%=category.name%></h4>
+    <h4><%=category.desc%></h4>
+    <a href="/category/<%=category._id %>">show companies of that category</a>
+   
+   
+ <% }) %>
+ <a href="/category/new">Add new category</a>
+ <a href="/shopping-cart">Shopping cart</a>
+ <a href="/profile">user mangement</a>

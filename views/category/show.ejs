@@ -1,0 +1,13 @@
+<h1>This is the show template of category</h1>
+
+<a href="/category/<%=category._id%>/company/new">Add new companies</a>
+
+</p>
+<%category.companyname.forEach(function(company){%>
+    <p><strong><%=company.name%></strong><%=company.image%> - <%=company.descr%></p>
+    <a href="/company/<%=company._id%>">show more info about company</a>
+
+    <%})%>
+    
+
+-
