@@ -4,7 +4,7 @@
 
 </p>
 <%category.companyname.forEach(function(company){%>
-    <p><strong><%=company.name%></strong><%=company.image%> - <%=company.descr%></p>
+    <p><strong><%=company.name%></strong> <img src="<%=company.image%>">- <%=company.descr%></p>
     <a href="/company/<%=company._id%>">show more info about company</a>
 
     <%})%>
