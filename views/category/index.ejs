@@ -1,11 +1,26 @@
-<% category.forEach(function(category){%>
-    <h4><%=category.name%></h4>
-    <img src="<%=category.image%>">
-    <h4><%=category.desc%></h4>
-    <a href="/category/<%=category._id %>">show companies of that category</a>
-   
-   
- <% }) %>
- <a href="/category/new">Add new category</a>
- <a href="/shopping-cart">Shopping cart</a>
- <a href="/profile">user mangement</a>
+<%- include('../partials/header'); -%>
+
+<div class="container">
+<div class="row text-center" style="display: flex; flex-wrap: wrap;">
+    <% category.forEach(function(category){%>
+    <div class="col-md-3 col-sm-6">
+
+        <div class="thumbnail">
+            <img src="<%=category.image%>" alt="error" style="height: 200px;">
+            <div class="caption">
+                <h4> <%=category.name%> </h4>
+            </div>
+            <p>
+                <a href="/category/<%=category._id %>" class="btn btn-primary">More Info</a>
+            </p>
+        </div>
+    </div>
+
+    <% }); %>
+</div>
+</div>
+</div>
+
+<a href="/category/new">Add new category</a>
+
+<%- include('../partials/footer'); -%>

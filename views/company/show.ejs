@@ -1,11 +1,26 @@
-<h1>This is the show template of company,showing all products of that company</h1>
+<%- include('../partials/header'); -%>
+<div class="container">
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <%company.products.forEach(function(product){%>
+        <div class="col-md-3 col-sm-6">
+
+            <div class="thumbnail">
+                <img src="<%=product.image%>" alt="error" style="height: 200px;">
+                <div class="caption">
+                    <h4> <%=product.name%> </h4>
+                </div>
+                <h4 style="color: green;"> <%=product.price%> L.E. </h4>
+                <p>
+                    <a href="/product/<%=product._id%>/add-to-cart" class="btn btn-primary">Add to Cart</a>
+                </p>
+            </div>
+        </div>
+
+        <% }); %>
+    </div>
+</div>
+</div>
 
 <a href="/company/<%=company._id%>/product/new">Add new products</a>
 
-<%company.products.forEach(function(product){%>
-    <p><strong><%=product.name%></strong>-<img src="<%=product.image%>"> - <%=product.price%></p>
-    <a href="/product/<%=product._id%>/add-to-cart">Add to Cart</a>
-   
-    <%})%>
-    
-
+<%- include('../partials/footer'); -%>

@@ -4,63 +4,58 @@
     <title></title>
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
       crossorigin="anonymous"
     />
     <link
       href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/stylesheets/register.css" />
+    <!-- <link rel="stylesheet" href="/stylesheets/register.css" /> -->
     <link rel="stylesheet" href="/stylesheets/contact.css" />
   </head>
 
   <body>
-    <nav
-      class="navbar navbar-expand-md navbar-dark fixed-top py-1"
-      style="
-        background-color: #3a1d9e;
-        font-family: Merriweather;
-        font-size: 15px;
-      "
-    >
-      <a class="navbar-brand" href="/">Shatab</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarLinks"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarLinks">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/shop">Shopping Room</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/help">Constructor help</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact Us</a>
-          </li>
-        </ul>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Shatab</a>
+        </div>
 
-        <ul class="navbar-nav navbar-right">
-          <li class="nav-item">
-            <a class="nav-link" href="#">hi</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="register">Sign Up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Log In</a>
-          </li>
-        </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/category">Shopping Roopm</a></li>
+            <li><a href="/constructorhelp">Constructor Help</a></li>
+            <li><a href="/shopping-cart">Shopping Cart</a></li>
+            <li><a href="/profile">User Management</a></li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search" />
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Sign Up</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
   </body>
