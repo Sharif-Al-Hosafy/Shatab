@@ -42,7 +42,6 @@
             <li><a href="/category">Shopping Roopm</a></li>
             <li><a href="/constructorhelp">Constructor Help</a></li>
             <li><a href="/shopping-cart">Shopping Cart</a></li>
-            <li><a href="/profile">User Management</a></li>
           </ul>
           <form class="navbar-form navbar-left">
             <div class="form-group">
@@ -51,9 +50,23 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Sign Up</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >User Management<span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Sign Up</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/profile">Profile</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
