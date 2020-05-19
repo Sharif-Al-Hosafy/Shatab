@@ -1,6 +1,28 @@
 <%- include('../partials/header'); -%>
 
-<div class="container">
+<div class="container" style="text-align: center;">
+    <header class="jumbotron">
+        <div class="container">
+            <p>Searching for a specific category?</p>
+            <p>
+                <form action="/category" method="GET" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" name="search" placeholder="Category Search..." class="form-control">
+                        <input type="submit" value="Search" class="btn btn-default">
+                    </div>
+                </form>
+            </p>
+        </div>
+    </header>
+
+<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+    <div class="col-md-12">
+        <% if(noMatch !== null) { %>
+        <h3><%= noMatch %></h3>
+        <% } %>
+    </div>
+</div>
+
 <div class="row text-center" style="display: flex; flex-wrap: wrap;">
     <% category.forEach(function(category){%>
     <div class="col-md-3 col-sm-6">

@@ -8,13 +8,34 @@ Order = require("../models/order");
 (User = require("../models/user")),
   //Index Route=show all categories
   router.get("/category", function (req, res) {
-    Category.find({}, function (err, allcategories) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render("category/index", { category: allcategories });
-      }
-    });
+    var noMatch = null;
+    if (req.query.search) {
+      const regex = new RegExp(escapeRegex(req.query.search), "gi");
+      Category.find({ name: regex }, function (err, allcategories) {
+        if (err) {
+          console.log(err);
+        } else {
+          if (allcategories.length < 1) {
+            noMatch = "No category match that query, please try again.";
+          }
+          res.render("category/index", {
+            category: allcategories,
+            noMatch: noMatch,
+          });
+        }
+      });
+    } else {
+      Category.find({}, function (err, allcategories) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("category/index", {
+            category: allcategories,
+            noMatch: noMatch,
+          });
+        }
+      });
+    }
   });
 
 ///////////////////////////////////////////////////////////////////////
@@ -42,31 +63,78 @@ router.post("/category", function (req, res) {
 //SHOW -show template of category,link new category,show companies,link for more info about company
 router.get("/category/:id", function (req, res) {
   //find the category with the provide ID
-  Category.findById(req.params.id)
-    .populate("companyname")
-    .exec(function (err, foundCategory) {
-      if (err) {
-        console.log(err);
-      } else {
-        //render show template with that category
-        res.render("category/show", { category: foundCategory });
-      }
-    });
+  var noMatch = "";
+  if (req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), "gi");
+    Category.findById(req.params.id)
+      .populate("companyname", null, { name: regex })
+      .exec(function (err, foundCategory) {
+        if (err) {
+          console.log(err);
+        } else {
+          if (foundCategory.companyname.length < 1) {
+            noMatch = "No company match that query, please try again.";
+          }
+          res.render("category/show", {
+            category: foundCategory,
+            noMatch: noMatch,
+          });
+        }
+      });
+  } else {
+    Category.findById(req.params.id)
+      .populate("companyname")
+      .exec(function (err, foundCategory) {
+        if (err) {
+          console.log(err);
+        } else {
+          //render show template with that category
+          res.render("category/show", {
+            category: foundCategory,
+            noMatch: noMatch,
+          });
+        }
+      });
+  }
 });
 /////////////////////////////////////////////////////////////////////////
 //SHOW -show template of that company
 router.get("/company/:id", function (req, res) {
-  //find the company with the provide ID
-  Company.findById(req.params.id)
-    .populate("products")
-    .exec(function (err, foundCompany) {
-      if (err) {
-        console.log(err);
-      } else {
-        //render show products of that company
-        res.render("company/show", { company: foundCompany });
-      }
-    });
+  var noMatch = "";
+  if (req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), "gi");
+    //find the company with the provide ID
+    Company.findById(req.params.id)
+      .populate("products", null, { name: regex })
+      .exec(function (err, foundCompany) {
+        if (err) {
+          console.log(err);
+        } else {
+          //render show products of that company
+          if (foundCompany.products.length < 1) {
+            noMatch = "No product match that query, please try again.";
+          }
+          res.render("company/show", {
+            company: foundCompany,
+            noMatch: noMatch,
+          });
+        }
+      });
+  } else {
+    Company.findById(req.params.id)
+      .populate("products")
+      .exec(function (err, foundCompany) {
+        if (err) {
+          console.log(err);
+        } else {
+          //render show products of that company
+          res.render("company/show", {
+            company: foundCompany,
+            noMatch: noMatch,
+          });
+        }
+      });
+  }
 });
 
 ////////////////////////////////////////////////////////////////////
@@ -225,4 +293,8 @@ function isLoggedIn(req, res, next) {
   }
   req.session.oldUrl = req.url;
   res.redirect("/login");
+}
+
+function escapeRegex(string) {
+  return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
 }

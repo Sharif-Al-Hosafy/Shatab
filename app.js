@@ -69,6 +69,6 @@ app.get("/shop", function (req, res) {
   res.redirect("/category");
 });
 
-app.listen(3000, function () {
+app.listen(3003, function () {
   console.log("Listening !!!");
 });
