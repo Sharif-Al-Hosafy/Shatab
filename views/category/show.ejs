@@ -42,7 +42,8 @@
     </div>
     </div>
         
+<% if(currentUser && currentUser.isAdmin){%>
 <a href="/category/<%=category._id%>/company/new">Add new companies</a>
-
+<%}%>
     <%- include('../partials/footer'); -%>
 

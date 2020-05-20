@@ -1,9 +1,8 @@
-<% constructors.forEach(function(constructors){%>
-    
-    <h4><%=constructors.name%></h4>
-    <h3><%=constructors.rating%></h3>
-    <a href="/constructors/<%=constructors._id%>">More Info</a>
- 
- <% }) %>
+<%- include('../partials/header'); -%> <%
+constructors.forEach(function(constructors){%>
 
- 
+<h4><%=constructors.name%></h4>
+<h3><%=constructors.rating%></h3>
+<a href="/constructors/<%=constructors._id%>">More Info</a>
+
+<% }) %> <%- include('../partials/footer'); -%>

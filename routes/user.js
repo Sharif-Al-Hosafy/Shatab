@@ -21,25 +21,30 @@ router.get("/register", function (req, res) {
 
 //handle sign up logic
 router.post("/register", function (req, res) {
-  User.register(
-    new User({ username: req.body.username, Email: req.body.Email }),
-    req.body.password,
-    function (err, user) {
-      if (err) {
-        console.log(err);
-        return res.render("register");
-      }
-      passport.authenticate("local")(req, res, function () {
-        if (req.session.oldUrl) {
-          var oldUrl = req.session.oldUrl;
-          req.session.oldUrl = null;
-          res.redirect(oldUrl);
-        } else {
-          res.redirect("/shop");
-        }
-      });
+  var newUser = new User({
+    username: req.body.username,
+    Email: req.body.Email,
+  });
+
+  if (req.body.admin === "AmiraBasmaSharif752016CS") {
+    newUser.isAdmin = true;
+  }
+
+  User.register(newUser, req.body.password, function (err, user) {
+    if (err) {
+      console.log(err);
+      return res.render("register");
     }
-  );
+    passport.authenticate("local")(req, res, function () {
+      if (req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+      } else {
+        res.redirect("/shop");
+      }
+    });
+  });
 });
 
 //show login form
@@ -51,7 +56,7 @@ router.get("/login", function (req, res) {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/constructorhelp",
+    successRedirect: "/shop",
     failureRedirect: "/login",
   }),
   function (req, res) {
@@ -68,7 +73,7 @@ router.post(
 //logout route
 router.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/constructorhelp");
+  res.redirect("/shop");
 });
 //////////////////////////////////////////////////////////
 var ObjectID = require("mongodb").ObjectID;

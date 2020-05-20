@@ -8,12 +8,12 @@ Order = require("../models/order");
 (User = require("../models/user")),
   //Index Route=show all categories
   router.get("/category", function (req, res) {
+    console.log(req.user);
     var noMatch = null;
     if (req.query.search) {
       const regex = new RegExp(escapeRegex(req.query.search), "gi");
       Category.find({ name: regex }, function (err, allcategories) {
         if (err) {
-          console.log(err);
         } else {
           if (allcategories.length < 1) {
             noMatch = "No category match that query, please try again.";
@@ -27,7 +27,6 @@ Order = require("../models/order");
     } else {
       Category.find({}, function (err, allcategories) {
         if (err) {
-          console.log(err);
         } else {
           res.render("category/index", {
             category: allcategories,
@@ -208,7 +207,7 @@ router.post("/company/:id/product", function (req, res) {
   });
 });
 ////////////////////////////////////////////////////////////////////////
-router.get("/product/:id/add-to-cart", function (req, res) {
+router.get("/product/:id/add-to-cart", isLoggedIn, function (req, res) {
   var productid = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   Product.findById(productid, function (err, product) {
