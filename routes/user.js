@@ -81,7 +81,6 @@ router.get("/profile", isLoggedIn, function (req, res, next) {
   var id = req.user._id;
 
   Order.find({ user: { id: ObjectID(id) } }, function (err, orders) {
-    // console.log(" hiii " + orders);
     if (err) return err;
     var cart;
     orders.forEach(function (order) {
