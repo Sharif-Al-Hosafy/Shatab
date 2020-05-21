@@ -1,18 +1,88 @@
-<h4><%=constructor.name%></h4>
-   <h4><%=constructor.rating%></h4>
-   <h4><%=constructor.email%></h4>
-   <h4><%=constructor.address%></h4>
-   <h4><%=constructor.phonenumber%></h4>
-   <h4><%=constructor.pricePerHour%></h4>
-   
-   <a href="/constructors/<%=constructor._id%>/comments/new">Add New Comment</a>
-   <%constructor.comments.forEach(function(comment){%>
-    <p><strong><%=comment.author.username%></strong> - <%=comment.text%></p>
-    <%})%>
-    
-    
-    <a href="/constructors/<%=constructor._id%>/request/new">send to this constructor</a>
+  <%- include('../partials/header'); -%>
+<div style="background-color: #e0ebeb;">
+  <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="margin-top: 6rem;">
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                                    <img src="https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png" id="imgProfile" class="img-thumbnail"/> 
+                                    <h2><%=constructor.name%></h2>
+                                    <h5><%=constructor.rating%></h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-2 col-5">
+                                    <label id="labelstyle">Email</label>
+                            </div>
+                            <div class="col-md-8 col-6">
+                                <%=constructor.email%>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-2 col-5">
+                                <label id="labelstyle">Adress</label>
+                            </div>
+                            <div class="col-md-8 col-6">
+                                <%=constructor.address%>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-3 col-md-2 col-5">
+                                <label id="labelstyle">Phone</label>
+                            </div>
+                            <div class="col-md-8 col-6">
+                                <%=constructor.phonenumber%>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-3 col-md-2 col-5">
+                                <label id="labelstyle">Price per hour</label>
+                            </div>
+                            <div class="col-md-8 col-6">
+                                <%=constructor.pricePerHour%>
+                            </div>
+                        </div>
+                        <hr />                                
+                        <a href="/constructors/<%=constructor._id%>/request/new"><button class="btn btn-success" type="submit">Send Request to Constructor</button></a> <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-12">
+                <div class="card" id="style" >
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <h2>Comments</h2>
+                             <%constructor.comments.forEach(function(comment){%> 
+                            <div class="container">  
+                                <div class="row">
+                                     <div class="col-auto">
+                                        <i class="fas fa-user-circle fa-3x"></i>
+                                    </div>
+                                    <div class="col">
+                                        <strong><%=comment.author.username%></strong> <br>
+                                        <p><%=comment.text%></p>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                             <%})%>  <br>
+                             <a href="/constructors/<%=constructor._id%>/comments/new"><button 
+                                 id="style" class="btn btn-success" type="submit"> Add New Comment</button></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <a href="/constructorhelp"><i class="fas fa-arrow-left"id="goBackBtn"> Back</i></a>
 
-   <a href="/constructorhelp">Back</a>
+    </div>
+</div>                   
+    <%- include('../partials/footer'); -%>
 
   

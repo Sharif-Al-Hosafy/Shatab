@@ -1,13 +1,22 @@
-<h1>Creat a New Comment to<%=constructor.name%></h1>
+<div id="commentBody">
+	<h2 id="commentTitle">Write a Comment to <%=constructor.name%> </h2>
+		<div class="container"  id="commentContainer">
+	 		<div class="row">
+    			<div class="col">
+    				<div class="card p-3">
+    					<form action="/constructors/<%=constructor._id%>/comments" method="POST">
+						<div class="form-group">
+              <textarea name="comment[text]" placeholder="Enter Comment" id="commentArea"
+               class="form-control" rows="4"></textarea>
+						</div>
+    					<br>
+ 						<button class="btn btn-success btn-sm ">Comment</button>
+ 					</form>
+    				</div>
+ 				</div>
+			</div>
+	<a href="/constructorhelp" > <p id="back"><i class="fas fa-arrow-left"> Back</i></p></a>
 
-
-<form action="/constructors/<%=constructor._id%>/comments" method="POST">
-    <input type="text" name="comment[text]" placeholder="text">
-    
-    <button>Submit!</button>
-
-
-</form>
-
-<a href="/constructorhelp">Go Back</a>
+		</div>
+</div>
 
