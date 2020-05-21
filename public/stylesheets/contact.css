@@ -45,11 +45,63 @@
 #contact-div {
   text-align: center;
 }
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:visited {
-  background: #2c3e50;
-  background: -webkit-linear-gradient(to right, #3498db, #2c3e50);
-  background: linear-gradient(to right, #3498db, #2c3e50);
+#imgProfile{
+	width: 150px; 
+	height: 130px;
+}
+#labelstyle{
+	font-weight:bold;
+}
+#style{
+	margin-top: 15px;
+}
+#goBackBtn{
+	margin-top: 10px;
+	margin-bottom: 15px;
+	color: #262626;
+	font-size: 25px;
+}
+#commentContainer{
+	max-width: 700px;
+	margin-left:5px;
+}
+#commentArea{
+	resize:none;
+	display:block;
+	box-shadow:0 4px 6px rgba(0,0,0,0.1);
+}
+
+#commentTitle{
+	font-weight: bold;
+	margin-top: 5rem;
+	padding: 20px;
+}
+#commentBody{
+	padding:2rem;
+	position: fixed;
+	top: 0;
+  	left: 0;
+  	bottom: 0;
+  	right: 0;
+  	overflow: auto;
+	background-color:#f2f2f2;
+}
+#back{
+	margin-top: 15px;
+	font-size: 20px;
+	color: #1a1a1a;
+	font-family: 'Merriweather';
+}
+#title{
+	padding-bottom: 2rem;
+
+}
+#inputText{
+  border: 1px solid #dcdcdc;
+}
+#x{
+  margin-top: 3px;;
+}
+#btnsize{
+  width: 16.5rem;
 }
