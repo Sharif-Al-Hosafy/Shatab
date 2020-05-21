@@ -1,16 +1,21 @@
-<h1>Creat a New Request to <%=constructor.name%></h1>
-
-
-
-<form action="/constructors/<%=constructor._id%>/request/" method="post">
-  <ul class="inputs">
-    <li>
-      <label for="request">Your Request</label>
-      <input type="text" id="requestText" name="requestText" placeholder="please,write your problem" />
-    </li>
-   
-  </ul>
-   
-  </form>
-
-  
+<div style="background-color: #dcdcdc; padding-bottom: 10px ;text-align: center;">
+  <div class="container" style="margin-top: 7rem; ">
+    <h1 style="margin-bottom: 20px;">Send request to <%=constructor.name%> </h1>
+       <div class="row">
+                <div class="col-12">
+      <form action="/constructors/<%=constructor._id%>/request/" method="post">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1"><h6 style=" padding-bottom:10px;">
+                  Please explain your request distinctly so that the constructor can get you exactly what you want.
+                </h6></label>
+               <textarea name="comment[text]" placeholder="Write your request here.." class="form-control w-75" rows="5"
+                style="height: 200px; resize: none; display: block; margin-left: auto; margin-right: auto;"></textarea><br>
+            </div> 
+            <button class="btn btn-success btn-lg">Send Request</button>
+         
+        </div>
+    
+        </div> 
+      </form>
+  </div>
+</div>

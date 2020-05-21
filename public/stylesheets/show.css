@@ -1,0 +1,16 @@
+#imgProfile{
+	width: 150px; 
+	height: 130px;
+}
+label{
+	font-weight:bold;
+}
+#style{
+	margin-top: 15px;
+}
+#goBackBtn{
+	margin-top: 10px;
+	margin-bottom: 15px;
+	color: #262626;
+	font-size: 25px;
+}
