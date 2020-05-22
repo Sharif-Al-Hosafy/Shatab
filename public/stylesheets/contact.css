@@ -1,7 +1,7 @@
 .navbar {
   border-radius: 0;
-}
 
+}
 #fback-textarea {
   height: 10rem;
   width: 24rem;
@@ -45,6 +45,7 @@
 #contact-div {
   text-align: center;
 }
+/*show constructor*/
 #imgProfile{
 	width: 150px; 
 	height: 130px;
@@ -61,6 +62,7 @@
 	color: #262626;
 	font-size: 25px;
 }
+/*comment page*/
 #commentContainer{
 	max-width: 700px;
 	margin-left:5px;
@@ -92,6 +94,7 @@
 	color: #1a1a1a;
 	font-family: 'Merriweather';
 }
+/* login/register forms */
 #title{
 	padding-bottom: 2rem;
 
@@ -104,4 +107,27 @@
 }
 #btnsize{
   width: 16.5rem;
+}
+/*Request page*/
+#requestBody{
+	background-color: #dcdcdc; 
+	padding-bottom: 10px ;
+	text-align: center;
+}
+#reqTitle{
+	margin-bottom: 20px;
+}
+#subTitle{
+	padding-bottom:10px;
+}
+#reqtextarea{
+	height: 200px; 
+	resize: none; 
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto;
+}
+/*checkout page*/
+#checkform{
+	padding-bottom: 20px;
 }
