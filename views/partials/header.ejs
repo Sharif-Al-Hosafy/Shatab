@@ -20,9 +20,7 @@
     <link rel="stylesheet" href="/stylesheets/contact.css" />
   </head>
   <body>
-    <nav
-      class="navbar navbar-expand-md navbar navbar-dark bg-dark fixed-top py-1"
-    >
+    <nav class="navbar navbar-expand-md navbar navbar-dark bg-dark py-1">
       <a class="navbar-brand" href="/">Shatab</a>
       <button
         class="navbar-toggler"
@@ -58,7 +56,10 @@
             >
               <%= currentUser.username %>
             </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <div
+              class="dropdown-menu dropdown-menu-right"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
               <a class="dropdown-item" href="/profile"
                 ><i class="fas fa-user"></i> Profile</a
               >
@@ -91,5 +92,25 @@
         </ul>
       </div>
     </nav>
+    <div class="container">
+      <%if(error && error.length > 0) {%>
+      <div
+        class="alert alert-danger"
+        style="margin-top: 30px; text-align: center;"
+        role="alert"
+      >
+        <%= error %>
+      </div>
+      <%}%><% if(success && success.length > 0){%>
+
+      <div
+        class="alert alert-success"
+        style="margin-top: 30px; text-align: center;"
+        role="alert"
+      >
+        <%= success %>
+      </div>
+      <%}%>
+    </div>
   </body>
 </html>

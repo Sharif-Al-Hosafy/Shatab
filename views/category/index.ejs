@@ -1,47 +1,64 @@
 <%- include('../partials/header'); -%>
 
 <div class="container">
-
-    <div class="jumbotron" style="padding-top: 6rem;">
-        <div class="container" style="text-align: center;">
-            <p>Searching for a specific <strong>Category </strong>?</p>
-                <form action="/category" method="GET" class="form-inline justify-content-center">
-                    <div class="form-group mx-sm-3 mb-2">
-                      <input type="text" class="form-control" name="search" placeholder="Category Search">
-                    </div>
-                    <button type="submit" class="btn btn-outline-success mb-2">Search</button>
-                </form>
+  <div class="jumbotron" style="padding-top: 6rem;">
+    <div class="container" style="text-align: center;">
+      <p>Searching for a specific <strong>Category </strong>?</p>
+      <form
+        action="/category"
+        method="GET"
+        class="form-inline justify-content-center"
+      >
+        <div class="form-group mx-sm-3 mb-2">
+          <input
+            type="text"
+            class="form-control"
+            name="search"
+            placeholder="Category Search"
+          />
         </div>
+        <button type="submit" class="btn btn-outline-success mb-2">
+          Search
+        </button>
+      </form>
     </div>
+  </div>
 
-    
-<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+  <div class="row text-center" style="display: flex; flex-wrap: wrap;">
     <div class="col-md-12">
-        <% if(noMatch !== null) { %>
-        <h3><%= noMatch %></h3>
-        <% } %>
+      <% if(noMatch !== null) { %>
+      <h3><%= noMatch %></h3>
+      <% } %>
     </div>
-</div>
+  </div>
 
-<div class="row">
+  <div class="row">
     <% category.forEach(function(category){%>
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3  col d-flex justify-content-center" style="margin-bottom: 15px;">
-            <div class="card text-center" style="max-width:80%;">
-                <img src="<%=category.image%>" alt="error" class="card-img-top" >
-                <div class="card-body">
-                    <h4 class="card-title"> <%=category.name%> </h4>
-                    <a href="/category/<%=category._id %>" class="btn btn-success btn-block">More Info</a>
-                </div>	  	
-            </div>
+    <div
+      class="col-12 col-md-6 col-lg-4 col-xl-3 col d-flex justify-content-center"
+      style="margin-bottom: 15px;"
+    >
+      <div class="card text-center" style="max-width: 80%;">
+        <img
+          src="<%=category.image%>"
+          alt="error"
+          class="card-img-top"
+          style="height: 150px;"
+        />
+        <div class="card-body">
+          <h4 class="card-title"><%=category.name%></h4>
+          <a
+            href="/category/<%=category._id %>"
+            class="btn btn-success btn-block"
+            >More Info</a
+          >
         </div>
+      </div>
+    </div>
     <% }); %>
+  </div>
 </div>
-</div>
-
 
 <% if(currentUser && currentUser.isAdmin){%>
-    <a href="/category/new">Add new category</a>
-<%}%>
-
-
-<%- include('../partials/footer'); -%>
+<a href="/category/new">Add new category</a>
+<%}%> <%- include('../partials/footer'); -%>

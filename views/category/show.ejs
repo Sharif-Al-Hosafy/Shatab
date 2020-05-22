@@ -25,7 +25,7 @@
             <%category.companyname.forEach(function(company){%>
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3  col d-flex justify-content-center" style="margin-bottom: 15px;">
                     <div class="card text-center" style="max-width:80%;">
-                        <img src="<%=company.image%>" alt="error" class="card-img-top" >
+                        <img src="<%=company.image%>" alt="error" class="card-img-top" style="height: 150px;" >
                         <div class="card-body">
                             <h4 class="card-title"> <%=company.name%> </h4>
                             <a href="/company/<%=company._id %>" class="btn btn-success btn-block">More Info</a>

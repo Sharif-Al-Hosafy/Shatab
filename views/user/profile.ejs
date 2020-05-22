@@ -1,34 +1,32 @@
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-8 main">
-    <h1>User Profile</h1>
-    <hr />
-    <h2>My Orders</h2>
-    <% orders.forEach(function(order){%>
-    <ul class="list-group">
-      <li class="list-group-item border">
-        totlal quantity: <%=order.cart.totalQty %>
-      </li>
-      <li class="list-group-item border">
-        address: <%=order.address %>
-      </li>
-      <li>
-        Products:
-        <ul>
-          <% Object.keys(order.cart.items).forEach(function (key){%>
-          <li>
-            <%= order.cart.items[key].qty%>.<%=
-            order.cart.items[key].item.name%> - <%=
-            order.cart.items[key].price%>
+<%- include('../partials/header'); -%>
+<div class="container">
+  <div class="row" style="margin-top: 100px;">
+    <% var cnt = 1; %> <% orders.forEach(function(order){%>
+    <div
+      class="col-12 col-md-6 col-lg-4 col-xl-3 col d-flex justify-content-center"
+      style="margin-bottom: 15px;"
+    >
+      <div class="card text-center" style="max-width: 80%;">
+        <img src="https://external-preview.redd.it/wl_OMEWEzDWAyDGU8-k469mI89a0HvNryasEQHxfceQ.jpg?auto=webp&s=f739d6643f9a51389369f9bdd248443f7bca68ab" alt="error" class="card-img-top" style="height: 150px;" />
+        <div class="card-body" style="text-align: center;">
+          <h3 class="card-title">Order no: <%=cnt%></h3>
+
+          <p class="card-text">
+            <strong style="color:slategray;">Totlal Quantity:</strong> <%=order.cart.totalQty %> 
+            <p><strong style="color:slategray;">Address:</strong>
+            <%=order.address %> </p>
+            <p><strong style="color:slategray;">Products: </strong></p><%
+            Object.keys(order.cart.items).forEach(function (key){%> <%=
+            order.cart.items[key].qty%>.<strong style="color:slategray;"><%= order.cart.items[key].item.name%></strong> -
+            <%= order.cart.items[key].price%>L.E.<%});%>
+          </p>
+        </div>
+          <li class="list-group-item list-group-item-success">
+            Total price:<%=order.cart.totalPrice%>L.E.
           </li>
-          <%});%>
-          <%console.log(order.cart.items[Object.keys(order.cart.items)[1]])%>
-        </ul>
-      </li>
-      <li class="list-group-item list-group-item-success">
-        Total price:<%=order.cart.totalPrice%>
-      </li>
-    </ul>
-    <%})%>
+      </div>
+    </div>
+    <% cnt++%> <%})%>
   </div>
 </div>
+<%- include('../partials/footer'); -%>

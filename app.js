@@ -12,7 +12,8 @@ let express = require("express"),
   (Product = require("./models/product")),
   (Company = require("./models/company")),
   (session = require("express-session")),
-  (MongoStore = require("connect-mongo")(session));
+  (MongoStore = require("connect-mongo")(session)),
+  (flash = require("connect-flash"));
 
 //requiring routes
 var authRoutes = require("./routes/user");
@@ -21,6 +22,7 @@ var commentRoutes = require("./routes/comments");
 var constructorRoutes = require("./routes/constructors");
 var requestRoutes = require("./routes/request");
 var categoryRoutes = require("./routes/category");
+app.use(flash());
 
 //PASSPORT CONFIGUARTION
 app.use(
@@ -40,6 +42,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user; //pass the user to every single template
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   next();
 });
 mongoose.connect("mongodb://localhost/shatabProj");
@@ -72,6 +76,6 @@ app.get("/shop", function (req, res) {
   res.redirect("/category");
 });
 
-app.listen(3003, function () {
+app.listen(3002, function () {
   console.log("Listening !!!");
 });

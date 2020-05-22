@@ -1,20 +1,40 @@
 <%- include('../partials/header'); -%>
-<div style="position: fixed;top: 0;left: 0;bottom: 0;right: 0;overflow: auto; ">
-    <div class="container" style="margin-top: 7rem;">
-        <div class="row"> 
-            <%constructors.forEach(function(constructors){%>
-                <div class="col-lg-4 col-md-6 col-12  col d-flex justify-content-center" style="margin-bottom: 15px;">
-                    <div class="card" style="width:60%">
-                        <img src="https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png" class="card-img-top" >
-                        <div class="card-body">
-                            <h5 class="card-title"> <%=constructors.name%> </h5>
-                            <p class="card-text"> <%=constructors.rating%></p>
-                            <a href="/constructors/<%=constructors._id%>" class="btn btn-success">More Info</a>
-                        </div>	  	
-                    </div>
-                </div>
-            <% }) %>
+<div
+  style="
+    margin-top: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+  "
+>
+  <div class="container" style="margin-top: 7rem;">
+    <div class="row">
+      <%constructors.forEach(function(constructors){%>
+      <div
+        class="col-lg-4 col-md-6 col-12 col d-flex justify-content-center"
+        style="margin-bottom: 15px;"
+      >
+        <div class="card" style="width: 60%;">
+          <img
+            src="https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png"
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%=constructors.name%></h5>
+            <p class="card-text"><%=constructors.rating%></p>
+            <a
+              href="/constructors/<%=constructors._id%>"
+              class="btn btn-success"
+              >More Info</a
+            >
+          </div>
         </div>
+      </div>
+      <% }) %>
     </div>
-</div>	
- <%- include('../partials/footer'); -%>
+  </div>
+</div>
+<%- include('../partials/footer'); -%>

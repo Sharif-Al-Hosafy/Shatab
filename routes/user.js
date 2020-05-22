@@ -58,6 +58,7 @@ router.post(
   passport.authenticate("local", {
     successRedirect: "/shop",
     failureRedirect: "/login",
+    failureFlash: "Incorrect username or password",
   }),
   function (req, res) {
     if (req.session.oldUrl) {
@@ -73,7 +74,8 @@ router.post(
 //logout route
 router.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/shop");
+  req.flash("success", "Logged you out, Bye!");
+  res.redirect("/");
 });
 //////////////////////////////////////////////////////////
 var ObjectID = require("mongodb").ObjectID;
@@ -97,6 +99,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
+  req.flash("error", "Please Login First");
   res.redirect("/login");
 }
 

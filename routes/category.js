@@ -8,7 +8,6 @@ Order = require("../models/order");
 (User = require("../models/user")),
   //Index Route=show all categories
   router.get("/category", function (req, res) {
-    console.log(req.user);
     var noMatch = null;
     if (req.query.search) {
       const regex = new RegExp(escapeRegex(req.query.search), "gi");
@@ -217,6 +216,7 @@ router.get("/product/:id/add-to-cart", isLoggedIn, function (req, res) {
     }
     cart.add(product, product.id);
     req.session.cart = cart;
+    req.flash("success", "Item is added to your cart");
     res.redirect("/category");
   });
 });
@@ -291,6 +291,7 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   req.session.oldUrl = req.url;
+  req.flash("error", "Please Login First");
   res.redirect("/login");
 }
 
