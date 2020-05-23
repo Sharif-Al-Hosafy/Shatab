@@ -47,7 +47,7 @@ router.post("/constructors/:id/request/", function (req, res) {
           request.text = req.body.requestText;
 
           var mailOptions = {
-            from: '"Shatab" <amira.21sakr@gmail.com>', // sender address
+            from: '"Shatab" <stanford22@ethereal.email>', // sender address
             to: request.author.Email, // list of receivers
             subject: "Request", // Subject line
             text: "Constructor infromation ", // plaintext body
@@ -71,7 +71,7 @@ router.post("/constructors/:id/request/", function (req, res) {
           });
 
           var mailOptions = {
-            from: '"Shatab" <amira.21sakr@gmail.com>', // sender address
+            from: '"Shatab" <stanford22@ethereal.email>', // sender address
             to: constructor.email, // list of receivers
             subject: " New Request ", // Subject line
             text: "Client's information", // plaintext body

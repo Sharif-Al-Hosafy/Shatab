@@ -57,14 +57,14 @@ app.use("/constructors/:id/comments", commentRoutes);
 app.use(requestRoutes);
 app.use(categoryRoutes);
 
-// Constructor.create({
-//   name: "Sharif",
-//   rating: "3/5",
-//   email: "sherifismail44@gmail.com",
-//   address: "Ibrahemya",
-//   phonenumber: "01233336633",
-//   pricePerHour: "100LE",
-// });
+ /*Constructor.create({
+   name: "Sharif",
+   rating: "3/5",
+  email: "sherifismail44@gmail.com",
+   address: "Ibrahemya",
+  phonenumber: "01233336633",
+  pricePerHour: "100LE",
+ });*/
 
 app.get("/", function (req, res) {
   res.render("Landing");
