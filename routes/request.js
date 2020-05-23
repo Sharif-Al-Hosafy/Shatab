@@ -43,12 +43,12 @@ router.post("/constructors/:id/request/", function (req, res) {
           request.To.email = constructor.email;
           request.author.id = req.user._id;
           request.author.username = req.user.username;
-          request.author.email = req.user.email;
+          request.author.Email = req.user.Email;
           request.text = req.body.requestText;
 
           var mailOptions = {
             from: '"Shatab" <amira.21sakr@gmail.com>', // sender address
-            to: request.author.email, // list of receivers
+            to: request.author.Email, // list of receivers
             subject: "Request", // Subject line
             text: "Constructor infromation ", // plaintext body
             html:
@@ -79,7 +79,7 @@ router.post("/constructors/:id/request/", function (req, res) {
               "<h4>client name is:<h4>" +
               request.author.username +
               "<h4>client Email is:<h4>" +
-              request.author.email +
+              request.author.Email +
               "<h4>client phone number is:<h4>" +
               req.user.phone +
               "<h4>client address is:<h4>" +

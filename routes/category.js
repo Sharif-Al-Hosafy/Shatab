@@ -3,9 +3,9 @@ var express = require("express"),
   Category = require("../models/category"),
   Company = require("../models/company"),
   Product = require("../models/product"),
-  Cart = require("../models/cart");
-Order = require("../models/order");
-(User = require("../models/user")),
+  Cart = require("../models/cart"),
+  Order = require("../models/order"),
+  User = require("../models/user");
   //Index Route=show all categories
   router.get("/category", function (req, res) {
     var noMatch = null;
@@ -217,7 +217,7 @@ router.get("/product/:id/add-to-cart", isLoggedIn, function (req, res) {
     cart.add(product, product.id);
     req.session.cart = cart;
     req.flash("success", "Item is added to your cart");
-    res.redirect("/category");
+    res.redirect('/shopping-cart');
   });
 });
 /////////////////////////////////////////////////////////////////////////////

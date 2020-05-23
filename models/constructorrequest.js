@@ -8,7 +8,7 @@ var RequestSchema=mongoose.Schema({
             ref:"User"
         },
         username:String,
-        email:String,
+        Email:String,
         
     },
     To:{

@@ -4,7 +4,7 @@
     <div class="card w-75 mx-auto">
         <h4 style="padding-top: 20px;">Your Total: <%=total%> L.E</h4>
         <div class="card-body">
-            <form>
+            <form action="/checkout" method="POST" id="checkout-form">
                 <div class="form-row">
                   <div class="col-md-6 mb-3" id="checkform">
                     <input type="text"  class="form-control" placeholder="Full Name" required>
