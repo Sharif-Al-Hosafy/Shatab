@@ -95,7 +95,7 @@ router.post("/constructors/:id/request/", function (req, res) {
           });
           //save request
           request.save();
-
+          req.flash("success", "Email Sent");
           res.redirect("/constructors/" + constructor._id);
         }
       });

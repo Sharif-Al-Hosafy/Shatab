@@ -21,7 +21,6 @@ router.get("/constructors/:id", function (req, res) {
       if (err) {
         res.redirect("/constructorhelp");
       } else {
-        req.flash("success", "Email Sent");
         res.render("constructors/show", { constructor: foundconstructor });
       }
     });
