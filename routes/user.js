@@ -24,6 +24,8 @@ router.post("/register", function (req, res) {
   var newUser = new User({
     username: req.body.username,
     Email: req.body.Email,
+    phone: req.body.phone,
+    address: req.body.address,
   });
 
   if (req.body.admin === "AmiraBasmaSharif752016CS") {
@@ -74,7 +76,6 @@ router.post(
 //logout route
 router.get("/logout", function (req, res) {
   req.logout();
-  req.flash("success", "Logged you out, Bye!");
   res.redirect("/");
 });
 //////////////////////////////////////////////////////////
