@@ -11,6 +11,7 @@ let express = require("express"),
   (Category = require("./models/category")),
   (Product = require("./models/product")),
   (Company = require("./models/company")),
+  methodOverride =require("method-override"),
   (session = require("express-session")),
   (MongoStore = require("connect-mongo")(session)),
   (flash = require("connect-flash"));
@@ -37,6 +38,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride("_method"));
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -57,8 +59,8 @@ app.use("/constructors/:id/comments", commentRoutes);
 app.use(requestRoutes);
 app.use(categoryRoutes);
 
- /*Constructor.create({
-   name: "Sharif",
+/* Constructor.create({
+   name: "constructor",
    rating: "3/5",
   email: "sherifismail44@gmail.com",
    address: "Ibrahemya",
