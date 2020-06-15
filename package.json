@@ -1,0 +1,36 @@
+{
+  "name": "shatab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "express-session": "^1.17.1",
+    "method-override": "^3.0.0",
+    "nodemailer": "^6.4.6",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "passport-local": "^1.0.0",
+    "passport": "^0.4.1",
+    "passport-local-mongoose": "^6.0.1",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "mongoose": "^5.9.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sharif-Al-Hosafy/Shatab.git"
+  },
+  "author": "Sharif Al Hosafy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sharif-Al-Hosafy/Shatab/issues"
+  },
+  "homepage": "https://github.com/Sharif-Al-Hosafy/Shatab#readme"
+}
