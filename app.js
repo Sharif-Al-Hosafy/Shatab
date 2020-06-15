@@ -46,7 +46,10 @@ app.use(function (req, res, next) {
   res.locals.error = req.flash("error");
   next();
 });
-mongoose.connect("mongodb://localhost/shatabProj");
+
+mongoose.connect(
+  "mongodb+srv://sharif:allahraby1234@warehouse-jrtie.mongodb.net/shatabProj?retryWrites=true&w=majority"
+);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public")); //mention the public directory from which we are serving the static files
@@ -76,6 +79,6 @@ app.get("/shop", function (req, res) {
   res.redirect("/category");
 });
 
-app.listen(3002, function () {
+app.listen(3000, function () {
   console.log("Listening !!!");
 });
