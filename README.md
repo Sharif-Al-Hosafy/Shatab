@@ -4,7 +4,7 @@ It's an application to help customers easily buy constructing products such as (
 
 ## Live Demo
 
- To see the app in action, go to https://powerful-temple-40171.herokuapp.com/
+ To see the app in action, go to https://shattab.herokuapp.com
  
 * ## Features
    * Authentication:
