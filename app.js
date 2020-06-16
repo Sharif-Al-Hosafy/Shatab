@@ -11,6 +11,7 @@ let express = require("express"),
   (Category = require("./models/category")),
   (Product = require("./models/product")),
   (Company = require("./models/company")),
+  (methodOverride = require("method-override")),
   (session = require("express-session")),
   (MongoStore = require("connect-mongo")(session)),
   (flash = require("connect-flash"));
@@ -37,6 +38,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride("_method"));
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -44,6 +46,7 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user; //pass the user to every single template
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.session = req.session;
   next();
 });
 
@@ -60,14 +63,14 @@ app.use("/constructors/:id/comments", commentRoutes);
 app.use(requestRoutes);
 app.use(categoryRoutes);
 
-Constructor.create({
-  name: "Sharif",
-  rating: "3/5",
-  email: "sherifismail44@gmail.com",
-  address: "Ibrahemya",
+/*Constructor.create({
+   name: "constructor",
+   rating: "3/5",
+  email: "amira.21sakr@gmail",
+   address: "Ibrahemya",
   phonenumber: "01233336633",
   pricePerHour: "100LE",
-});
+ });*/
 
 app.get("/", function (req, res) {
   res.render("Landing");

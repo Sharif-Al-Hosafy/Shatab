@@ -217,7 +217,7 @@ router.get("/product/:id/add-to-cart", isLoggedIn, function (req, res) {
     cart.add(product, product.id);
     req.session.cart = cart;
     req.flash("success", "Item is added to your cart");
-    res.redirect('/shopping-cart');
+    res.redirect('back');
   });
 });
 /////////////////////////////////////////////////////////////////////////////
@@ -275,6 +275,7 @@ router.post("/checkout", isLoggedIn, function (req, res) {
         order.address = req.body.address;
         order.mobilenumber = req.body.mobilenumber;
         order.save(function (err, result) {
+          req.flash('success','Successfully bought product!');
           req.session.cart = null;
           res.redirect("/category");
         });

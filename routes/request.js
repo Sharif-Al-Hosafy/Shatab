@@ -22,7 +22,7 @@ var smtpTransport = nodemailer.createTransport(
     service: "Gmail",
     auth: {
       user: "amira.21sakr@gmail.com",
-      pass: "amirasakr111",
+      pass: "m#ri0m0nir@",
     },
   })
 );
@@ -47,7 +47,7 @@ router.post("/constructors/:id/request/", function (req, res) {
           request.text = req.body.requestText;
 
           var mailOptions = {
-            from: '"Shatab" <amira.21sakr@gmail.com>', // sender address
+            from: '"Shatab" <agustina.will61@ethereal.email>', // sender address
             to: request.author.Email, // list of receivers
             subject: "Request", // Subject line
             text: "Constructor infromation ", // plaintext body
@@ -71,7 +71,7 @@ router.post("/constructors/:id/request/", function (req, res) {
           });
 
           var mailOptions = {
-            from: '"Shatab" <amira.21sakr@gmail.com>', // sender address
+            from: '"Shatab" <stanford22@ethereal.email>', // sender address
             to: constructor.email, // list of receivers
             subject: " New Request ", // Subject line
             text: "Client's information", // plaintext body
@@ -80,10 +80,6 @@ router.post("/constructors/:id/request/", function (req, res) {
               request.author.username +
               "<h4>client Email is:<h4>" +
               request.author.Email +
-              "<h4>client phone number is:<h4>" +
-              req.user.phone +
-              "<h4>client address is:<h4>" +
-              req.user.address +
               "<h4>The request is :<h4>" +
               request.text,
           };

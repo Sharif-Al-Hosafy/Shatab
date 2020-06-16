@@ -62,6 +62,9 @@
 	color: #262626;
 	font-size: 25px;
 }
+#edit{
+	float: right;
+  }
 /*comment page*/
 #commentContainer{
 	max-width: 700px;

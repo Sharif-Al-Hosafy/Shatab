@@ -39,7 +39,11 @@
             <a class="nav-link" href="/constructorhelp">Constructor help</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/shopping-cart">Shopping Cart</a>
+            <a class="nav-link" href="/shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
+              <% if(session.cart) { %>
+                <span class="badge"><%= session.cart.totalQty %></span>
+            <% } %>
+            </a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
