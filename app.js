@@ -46,6 +46,7 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user; //pass the user to every single template
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.session=req.session;
   next();
 });
 mongoose.connect("mongodb://localhost/shatabProj");
