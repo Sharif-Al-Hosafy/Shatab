@@ -275,6 +275,7 @@ router.post("/checkout", isLoggedIn, function (req, res) {
         order.address = req.body.address;
         order.mobilenumber = req.body.mobilenumber;
         order.save(function (err, result) {
+          req.flash('success','Successfully bought product!');
           req.session.cart = null;
           res.redirect("/category");
         });
