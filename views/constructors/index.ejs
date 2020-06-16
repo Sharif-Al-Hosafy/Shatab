@@ -24,7 +24,10 @@
           />
           <div class="card-body">
             <h5 class="card-title"><%=constructors.name%></h5>
-            <p class="card-text"><%=constructors.rating%></p>
+            <p class="card-text">
+              <%=constructors.rating%>
+              <i class="fas fa-star fa-lg" style="color: #ffdf00;"></i>
+            </p>
             <a
               href="/constructors/<%=constructors._id%>"
               class="btn btn-success"
