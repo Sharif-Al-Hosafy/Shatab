@@ -1,26 +1,45 @@
-
 <%- include('../partials/header'); -%>
 <div id="commentBody">
-	<h2 id="commentTitle">Edit Comment </h2>
-		<div class="container"  id="commentContainer">
-	 		<div class="row">
-    			<div class="col">
-    				<div class="card p-3">
-    					<form action="/constructors/<%=constructor_id%>/comments/<%=comment._id%>?_method=PUT" method="POST">
-						<div class="form-group">
-              <textarea name="comment[text]"  id="commentArea" class="form-control" rows="4"><%=comment.text%></textarea>
-						</div>
-    					<br>
- 						<button class="btn btn-success">Edit</button>
- 					</form>
-    				</div>
- 				</div>
-			</div>
-	<a href="/constructorhelp" > <p id="back"><i class="fas fa-arrow-left"> Back</i></p></a>
-
-		</div>
+  <h2 id="commentTitle">Edit Comment</h2>
+  <div class="container" id="commentContainer">
+    <div class="row">
+      <div class="col">
+        <div class="card p-3">
+          <form
+            action="/constructors/<%=constructor_id%>/comments/<%=comment._id%>?_method=PUT"
+            method="POST"
+          >
+            <div class="form-group">
+              <textarea
+                name="comment[text]"
+                id="commentArea"
+                class="form-control"
+                rows="4"
+              >
+<%=comment.text%></textarea
+              >
+            </div>
+            <div>
+              Rating
+              <input
+                type="number"
+                min="0"
+                max="5"
+                value="0"
+                name="comment[rating]"
+              />
+            </div>
+            <br />
+            <button class="btn btn-success">Edit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <a href="/constructorhelp">
+      <p id="back"><i class="fas fa-arrow-left"> Back</i></p></a
+    >
+  </div>
 </div>
 <%- include('../partials/footer'); -%>
 
 <a href="/constructorhelp">Go Back</a>
-
