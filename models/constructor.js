@@ -1,26 +1,19 @@
-var mongoose=require("mongoose");
-   
+var mongoose = require("mongoose");
 
-
-var constructorSchema=new mongoose.Schema({
-    name:String,
-    image:String,
-    rating:String,
-    email:String,
-    address:String,
-    phonenumber:String,
-    pricePerHour:String,
-    comments:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"Comment"
-        }
-    ]
-    
-    
+var constructorSchema = new mongoose.Schema({
+  name: String,
+  image: String,
+  rating: Number,
+  email: String,
+  address: String,
+  phonenumber: String,
+  pricePerHour: String,
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
 });
 
-
-module.exports=mongoose.model("Constructor",constructorSchema);
-
-
+module.exports = mongoose.model("Constructor", constructorSchema);

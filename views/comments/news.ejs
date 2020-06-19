@@ -1,23 +1,36 @@
 <%- include('../partials/header'); -%>
 <div id="commentBody">
-	<h2 id="commentTitle">Write a Comment to <%=constructor.name%> </h2>
-		<div class="container"  id="commentContainer">
-	 		<div class="row">
-    			<div class="col">
-    				<div class="card p-3">
-    					<form action="/constructors/<%=constructor._id%>/comments" method="POST">
-						<div class="form-group">
-              <textarea name="comment[text]" placeholder="Enter Comment" id="commentArea"
-               class="form-control" rows="4"></textarea>
-						</div>
-    					<br>
- 						<button class="btn btn-success btn-sm ">Comment</button>
- 					</form>
-    				</div>
- 				</div>
-			</div>
-	<a href="/constructorhelp" > <p id="back"><i class="fas fa-arrow-left"> Back</i></p></a>
-
-		</div>
+  <h2 id="commentTitle">Write a Comment to <%=constructor.name%></h2>
+  <div class="container" id="commentContainer">
+    <div class="row">
+      <div class="col">
+        <div class="card p-3">
+          <form
+            action="/constructors/<%=constructor._id%>/comments"
+            method="POST"
+          >
+            <div class="form-group">
+              <textarea
+                name="comment[text]"
+                placeholder="Enter Comment"
+                id="commentArea"
+                class="form-control"
+                rows="4"
+              ></textarea>
+            </div>
+            <div>
+              Rating
+              <input type="number" min="0" max="5" value="0" name="rating" />
+            </div>
+            <br />
+            <button class="btn btn-success btn-sm">Comment</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <a href="/constructorhelp">
+      <p id="back"><i class="fas fa-arrow-left"> Back</i></p></a
+    >
+  </div>
 </div>
 <%- include('../partials/footer'); -%>

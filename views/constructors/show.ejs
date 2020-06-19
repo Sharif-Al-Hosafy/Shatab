@@ -1,4 +1,9 @@
-<%- include('../partials/header'); -%>
+<%- include('../partials/header'); -%> <% var total = 0, c1 = 0,c2 = 0,c3= 0,c4
+= 0,c5 = 0 %> <%constructor.comments.forEach(function(comment){%>
+<%if(comment.rating == 1) {c1++;} else if(comment.rating == 2) {c2++;} else
+if(comment.rating == 3) {c3++;} else if(comment.rating == 4) {c4++;} else
+if(comment.rating == 5) {c5++;}%> <%})%> <% total = ( c1*1 + c2*2 + c3*3 + c4*4
++ c5*5 ) / ( c1 + c2 + c3 + c4 + c5 ) %>
 <div style="background-color: #e0ebeb;">
   <div class="container">
     <div class="row">
@@ -13,8 +18,9 @@
               />
               <h2><%=constructor.name%></h2>
               <h5>
-                <%=constructor.rating%>
+                <%for(var i=0 ; i< total ;i++){%>
                 <i class="fas fa-star fa-lg" style="color: #ffdf00;"></i>
+                <%}%>
               </h5>
             </div>
             <hr />
@@ -77,9 +83,16 @@
                     <i class="fas fa-user-circle fa-3x"></i>
                   </div>
                   <div class="col">
-                    <strong><%=comment.author.username%></strong> <br />
+                    <strong style="padding-right: 5px;"
+                      ><%=comment.author.username%></strong
+                    >
+                    - <%for(var i=0 ; i< comment.rating ;i++){%>
+                    <i class="fas fa-star fa-lg" style="color: #ffdf00;"></i>
+                    <%}%>
+                    <br />
                     <div class="row">
                       <div class="col-8"><p><%=comment.text%></p></div>
+
                       <% if(currentUser &&
                       comment.author.id.equals(currentUser._id)){%>
                       <div class="col-4">
@@ -134,4 +147,5 @@
     >
   </div>
 </div>
+
 <%- include('../partials/footer'); -%>

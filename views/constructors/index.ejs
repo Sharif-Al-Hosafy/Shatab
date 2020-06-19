@@ -1,4 +1,5 @@
 <%- include('../partials/header'); -%>
+
 <div
   style="
     margin-top: 50px;
@@ -23,16 +24,16 @@
             class="card-img-top"
           />
           <div class="card-body">
-            <h5 class="card-title"><%=constructors.name%></h5>
-            <p class="card-text">
-              <%=constructors.rating%>
-              <i class="fas fa-star fa-lg" style="color: #ffdf00;"></i>
-            </p>
-            <a
-              href="/constructors/<%=constructors._id%>"
-              class="btn btn-success"
-              >More Info</a
-            >
+            <h5 class="card-title" style="text-align: center;">
+              <%=constructors.name%>
+            </h5>
+            <div style="padding-left: 40px;">
+              <a
+                href="/constructors/<%=constructors._id%>"
+                class="btn btn-success"
+                >More Info</a
+              >
+            </div>
           </div>
         </div>
       </div>
