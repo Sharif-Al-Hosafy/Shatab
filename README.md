@@ -51,3 +51,7 @@ It's an application to help customers easily buy constructing products such as (
    * passport — Simple, authentication for Node.js.
    * mongoose — MongoDB object modeling tool designed to work in an asynchronous environment
    * Nodemailer — package to allow sending E-mail via node
+
+* # Upcoming
+  * Tracking system for the products
+  * Rating System for constructors
