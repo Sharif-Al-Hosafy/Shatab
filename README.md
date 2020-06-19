@@ -27,6 +27,7 @@ It's an application to help customers easily buy constructing products such as (
      * Providing many constructors with different ratings and prices
      * ability to add ratings and comments
      * send request to constructor and get the response via email
+     * Rating System for constructors
   
   * Manage warehouse posts with basic functionalities:
     * flexabilty to add new categories, companies and products
@@ -54,4 +55,3 @@ It's an application to help customers easily buy constructing products such as (
 
 * # Upcoming
   * Tracking system for the products
-  * Rating System for constructors
