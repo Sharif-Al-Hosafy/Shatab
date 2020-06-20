@@ -6,6 +6,8 @@ var express = require("express"),
   Cart = require("../models/cart"),
   Order = require("../models/order"),
   User = require("../models/user");
+  nodemailer = require("nodemailer");
+  smtpTransport = require("nodemailer-smtp-transport");
   //Index Route=show all categories
   router.get("/category", function (req, res) {
     var noMatch = null;
@@ -250,6 +252,7 @@ router.get("/shopping-cart", isLoggedIn, function (req, res) {
   });
 });
 
+
 /////////////////////////////////////////////////////////////////////////
 router.get("/checkout", isLoggedIn, function (req, res) {
   if (!req.session.cart) {
@@ -258,6 +261,17 @@ router.get("/checkout", isLoggedIn, function (req, res) {
   var cart = new Cart(req.session.cart);
   res.render("shop/checkout", { total: cart.totalPrice });
 });
+//=====================================================================
+//To send email to the user with order
+var smtpTransport = nodemailer.createTransport(
+  smtpTransport({
+    service: "Gmail",
+    auth: {
+      user: "amira.21sakr@gmail.com",
+      pass: "m#ri0m0nir@",
+    },
+  })
+);
 //////////////////////////////////////////////////////////////////////////////
 router.post("/checkout", isLoggedIn, function (req, res) {
   if (!req.session.cart) {
@@ -269,20 +283,51 @@ router.post("/checkout", isLoggedIn, function (req, res) {
         console.log(err);
       } else {
         order.user.id = req.user._id;
+        order.user.username = req.user.username;
+       order.user.Email = req.user.Email;
         order.cart = cart;
         order.city = req.body.city;
         order.region = req.body.region;
         order.address = req.body.address;
         order.mobilenumber = req.body.mobilenumber;
+        order.cart.items = cart.generateArray(); 
+        var orders=[];
+        Object.keys(order.cart.items).forEach(function (key){
+            orders.push('item name',order.cart.items[key].item.name,'quantity of this item',order.cart.items[key].qty,'price',order.cart.items[key].price);
+        });
+        var mailOptions = {
+          from: '"Shatab" <agustina.will61@ethereal.email>', // sender address
+          to: order.user.Email, // list of receivers
+          subject: "Order tracking", // Subject line
+          html:
+          '<h4>Total items you bought: '+order.cart.totalQty+
+          '<h4>Total pice: '+order.cart.totalPrice+
+          '<h4>Order content: <h4> :'+'<h3> '+orders+ '</h3>'+
+     '<h4>Address you want to receive the order at:</h4>'+'<h3> '+ order.address +'</h3>'+
+     '<h4>your order will arrive in a week so wait for another email with the tracking of the order:</h4>'
+          
+          
+        };
+        smtpTransport.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            return console.log(error);
+          }
+          console.log("Message 1 sent: " + info.response);
+        });
+
         order.save(function (err, result) {
+         
           req.flash('success','Successfully bought product!');
           req.session.cart = null;
           res.redirect("/category");
         });
+      
       }
     });
   }
+  
 });
+
 module.exports = router;
 
 //////////////////////////////////////////////////////////////////////////

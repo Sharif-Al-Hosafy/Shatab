@@ -6,7 +6,8 @@ var orderSchema=new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:"User"
         },
-        //username:String
+        username:String,
+        Email:String
     },
     cart:Object,
     city:String,
