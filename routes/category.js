@@ -300,8 +300,10 @@ router.post("/checkout", isLoggedIn, function (req, res) {
           orders.push(
             "item name",
             order.cart.items[key].item.name,
-            "quantity of this item",
+            "Amount of this item",
             order.cart.items[key].qty,
+            "Quantity you ordered of this item",
+            order.cart.items[key].qtty,
             "price",
             order.cart.items[key].price
           );
