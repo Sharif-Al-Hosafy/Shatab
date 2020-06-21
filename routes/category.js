@@ -1,3 +1,4 @@
+
 var express = require("express"),
   router = express.Router({ mergeParams: true }),
   Category = require("../models/category"),
@@ -208,25 +209,32 @@ router.post("/company/:id/product", function (req, res) {
   });
 });
 ////////////////////////////////////////////////////////////////////////
-router.get("/product/:id/add-to-cart", isLoggedIn, function (req, res) {
+router.post("/product/:id/add-to-cart", isLoggedIn, function (req, res) {
   var productid = req.params.id;
+  var quantity=parseFloat(req.body.quantity)
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   Product.findById(productid, function (err, product) {
     if (err) {
       console.log(err);
       return res.redirect("/");
     }
-    cart.add(product, product.id);
+   
+    cart.add(product, product.id,quantity);
     req.session.cart = cart;
     req.flash("success", "Item is added to your cart");
     res.redirect('back');
-  });
+    
+     
+
 });
+  });
+  
 /////////////////////////////////////////////////////////////////////////////
-router.get("/product/:id/reduce/", function (req, res) {
+router.post("/product/:id/reduce/", function (req, res) {
   var productId = req.params.id;
+  var quantity =parseFloat(req.body.quantity);
   var cart = new Cart(req.session.cart ? req.session.cart : {});
-  cart.reduceByOne(productId);
+  cart.reduceByOne(productId,quantity);
   req.session.cart = cart;
   res.redirect("/shopping-cart");
 });
@@ -245,10 +253,13 @@ router.get("/shopping-cart", isLoggedIn, function (req, res) {
     return res.render("shop/shopping-cart", { products: null });
   }
   var cart = new Cart(req.session.cart);
-  var products = cart.generateArray();
-  res.render("shop/shopping-cart", {
-    products: cart.generateArray(),
-    totalPrice: cart.totalPrice,
+  var products = cart.generateArray()
+  
+    res.render("shop/shopping-cart", {
+      products: cart.generateArray(),
+      totalPrice: cart.totalPrice,
+      
+  
   });
 });
 

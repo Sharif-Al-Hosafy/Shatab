@@ -3,29 +3,31 @@ module.exports=function Cart(oldCart){
     this.totalQty=oldCart.totalQty || 0;
     this.totalPrice=oldCart.totalPrice || 0;
 
-    this.add=function(item,id){
+    this.add=function(item,id,qtty){
         var storedItem=this.items[id];
         if(!storedItem){
-            storedItem=this.items[id]={item:item,qty:0,price:0};
-
+            storedItem=this.items[id]={item:item,qty:0,qtty:0,price:0};
+    
         }
         storedItem.qty++;
-        storedItem.price=storedItem.item.price*storedItem.qty;
+        storedItem.qtty+=qtty;
+        storedItem.price=storedItem.item.price*storedItem.qtty;
         this.totalQty++;
-        this.totalPrice+=storedItem.item.price;
+        this.totalPrice+=storedItem.item.price*qtty;
         
     };
    
 
-    this.reduceByOne = function (id) {
+    this.reduceByOne = function (id,qtty) {
       
-        this.items[id].qty--;
-        this.items[id].price -= this.items[id].item.price;
-        this.totalQty--;
-        this.totalPrice -= this.items[id].item.price;
+        this.items[id].qtty-=qtty;
+        this.items[id].price -= this.items[id].item.price*qtty;
+        this.totalPrice -= this.items[id].item.price*qtty;
 
-        if(this.items[id].qty <= 0) {
+
+        if(this.items[id].qtty <= 0) {
             delete this.items[id];
+            this.totalQty--;
         }
     };
 

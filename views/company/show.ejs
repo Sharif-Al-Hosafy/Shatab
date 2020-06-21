@@ -26,9 +26,14 @@
                     <img src="<%=product.image%>" alt="error" class="card-img-top" style="height: 150px;">
                     <div class="card-body">
                         <h4 class="card-title"> <%=product.name%> </h4>
+                        <p class="card-text" style="color: purple; font-size: 20px;"> <%=product.description%></p>
                         <p class="card-text" style="color: blue; font-size: 20px;"> <%=product.price%> L.E.</p>
-                        <a href="/product/<%=product._id%>/add-to-cart" 
-                        class="btn btn-success btn-block" id="addCart">Add to Cart <i class="fas fa-shopping-cart"></i></a>
+                        <form action="/product/<%=product._id%>/add-to-cart" method="POST">
+                        <p class="card-text" style="color: pink; font-size: 20px;"> Enter quantity<input type="text" name="quantity" placeholder="quantity"></p>-<strong><%=product.unit%></strong>
+                        <button
+                            class="btn btn-success btn-block" id="addCart">Add to Cart <i class="fas fa-shopping-cart"></i></a>
+                    </form>
+                        
                     </div>	  	
                 </div>
             </div>

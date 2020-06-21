@@ -14,7 +14,9 @@
                             <div class="row">
                                 <div class="col"><label id="labelstyle">Product</label></div>    
                                 <div class="col"><label id="labelstyle">Price</label></div>  
-                                <div class="col"><label id="labelstyle">Amount</label></div>  
+                                <div class="col"><label id="labelstyle">Amount</label></div> 
+                                <div class="col"><label id="labelstyle">quantity</label></div> 
+                                
                                 <div class="col"></div>
                             </div>    
                         </div>
@@ -24,10 +26,14 @@
                                 <div class="col"><%=products.item.name%></div>
                                 <div class="col"><%=products.price%> L.E</div>
                                 <div class="col"><%=products.qty%></div>
+                                <div class="col"><%=products.qtty%></div>
+                                
                                 <div class="col">
                                     <div class="row">
-                                        <div class="col"><a href="/product/<%=products.item._id%>/reduce/">
+                                        <div class="col"><form action="/product/<%=products.item._id%>/reduce/" method="POST">
+                                            <input type="text" name="quantity" placeholder="enter quantity you want to reduce">
                                         <i class="fas fa-caret-down fa-lg"></i> </a></div>
+                                        </form>
                                         <div class="col"><a href="/product/<%=products.item._id%>/remove/">
                                         <i class="fas fa-trash" style="color: red;"></i></a></div>
                                     </div>    
