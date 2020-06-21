@@ -1,4 +1,3 @@
-
 var express = require("express"),
   router = express.Router({ mergeParams: true }),
   Category = require("../models/category"),
@@ -7,37 +6,37 @@ var express = require("express"),
   Cart = require("../models/cart"),
   Order = require("../models/order"),
   User = require("../models/user");
-  nodemailer = require("nodemailer");
-  smtpTransport = require("nodemailer-smtp-transport");
-  //Index Route=show all categories
-  router.get("/category", function (req, res) {
-    var noMatch = null;
-    if (req.query.search) {
-      const regex = new RegExp(escapeRegex(req.query.search), "gi");
-      Category.find({ name: regex }, function (err, allcategories) {
-        if (err) {
-        } else {
-          if (allcategories.length < 1) {
-            noMatch = "No category match that query, please try again.";
-          }
-          res.render("category/index", {
-            category: allcategories,
-            noMatch: noMatch,
-          });
+nodemailer = require("nodemailer");
+smtpTransport = require("nodemailer-smtp-transport");
+//Index Route=show all categories
+router.get("/category", function (req, res) {
+  var noMatch = null;
+  if (req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), "gi");
+    Category.find({ name: regex }, function (err, allcategories) {
+      if (err) {
+      } else {
+        if (allcategories.length < 1) {
+          noMatch = "No category match that query, please try again.";
         }
-      });
-    } else {
-      Category.find({}, function (err, allcategories) {
-        if (err) {
-        } else {
-          res.render("category/index", {
-            category: allcategories,
-            noMatch: noMatch,
-          });
-        }
-      });
-    }
-  });
+        res.render("category/index", {
+          category: allcategories,
+          noMatch: noMatch,
+        });
+      }
+    });
+  } else {
+    Category.find({}, function (err, allcategories) {
+      if (err) {
+      } else {
+        res.render("category/index", {
+          category: allcategories,
+          noMatch: noMatch,
+        });
+      }
+    });
+  }
+});
 
 ///////////////////////////////////////////////////////////////////////
 //show form to create new category
@@ -211,30 +210,27 @@ router.post("/company/:id/product", function (req, res) {
 ////////////////////////////////////////////////////////////////////////
 router.post("/product/:id/add-to-cart", isLoggedIn, function (req, res) {
   var productid = req.params.id;
-  var quantity=parseFloat(req.body.quantity)
+  var quantity = parseFloat(req.body.quantity);
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   Product.findById(productid, function (err, product) {
     if (err) {
       console.log(err);
       return res.redirect("/");
     }
-   
-    cart.add(product, product.id,quantity);
+
+    cart.add(product, product.id, quantity);
     req.session.cart = cart;
     req.flash("success", "Item is added to your cart");
-    res.redirect('back');
-    
-     
-
-});
+    res.redirect("back");
   });
-  
+});
+
 /////////////////////////////////////////////////////////////////////////////
 router.post("/product/:id/reduce/", function (req, res) {
   var productId = req.params.id;
-  var quantity =parseFloat(req.body.quantity);
+  var quantity = parseFloat(req.body.quantity);
   var cart = new Cart(req.session.cart ? req.session.cart : {});
-  cart.reduceByOne(productId,quantity);
+  cart.reduceByOne(productId, quantity);
   req.session.cart = cart;
   res.redirect("/shopping-cart");
 });
@@ -253,16 +249,13 @@ router.get("/shopping-cart", isLoggedIn, function (req, res) {
     return res.render("shop/shopping-cart", { products: null });
   }
   var cart = new Cart(req.session.cart);
-  var products = cart.generateArray()
-  
-    res.render("shop/shopping-cart", {
-      products: cart.generateArray(),
-      totalPrice: cart.totalPrice,
-      
-  
+  var products = cart.generateArray();
+
+  res.render("shop/shopping-cart", {
+    products: cart.generateArray(),
+    totalPrice: cart.totalPrice,
   });
 });
-
 
 /////////////////////////////////////////////////////////////////////////
 router.get("/checkout", isLoggedIn, function (req, res) {
@@ -295,29 +288,42 @@ router.post("/checkout", isLoggedIn, function (req, res) {
       } else {
         order.user.id = req.user._id;
         order.user.username = req.user.username;
-       order.user.Email = req.user.Email;
+        order.user.Email = req.user.Email;
         order.cart = cart;
         order.city = req.body.city;
         order.region = req.body.region;
         order.address = req.body.address;
         order.mobilenumber = req.body.mobilenumber;
-        order.cart.items = cart.generateArray(); 
-        var orders=[];
-        Object.keys(order.cart.items).forEach(function (key){
-            orders.push('item name',order.cart.items[key].item.name,'quantity of this item',order.cart.items[key].qty,'price',order.cart.items[key].price);
+        order.cart.items = cart.generateArray();
+        var orders = [];
+        Object.keys(order.cart.items).forEach(function (key) {
+          orders.push(
+            "item name",
+            order.cart.items[key].item.name,
+            "quantity of this item",
+            order.cart.items[key].qty,
+            "price",
+            order.cart.items[key].price
+          );
         });
         var mailOptions = {
           from: '"Shatab" <agustina.will61@ethereal.email>', // sender address
           to: order.user.Email, // list of receivers
           subject: "Order tracking", // Subject line
           html:
-          '<h4>Total items you bought: '+order.cart.totalQty+
-          '<h4>Total pice: '+order.cart.totalPrice+
-          '<h4>Order content: <h4> :'+'<h3> '+orders+ '</h3>'+
-     '<h4>Address you want to receive the order at:</h4>'+'<h3> '+ order.address +'</h3>'+
-     '<h4>your order will arrive in a week so wait for another email with the tracking of the order:</h4>'
-          
-          
+            "<h4>Total items you bought: " +
+            order.cart.totalQty +
+            "<h4>Total pice: " +
+            order.cart.totalPrice +
+            "<h4>Order content: <h4> :" +
+            "<h3> " +
+            orders +
+            "</h3>" +
+            "<h4>Address you want to receive the order at:</h4>" +
+            "<h3> " +
+            order.address +
+            "</h3>" +
+            "<h4>your order will arrive in a week so wait for another email with the tracking of the order:</h4>",
         };
         smtpTransport.sendMail(mailOptions, function (error, info) {
           if (error) {
@@ -327,16 +333,13 @@ router.post("/checkout", isLoggedIn, function (req, res) {
         });
 
         order.save(function (err, result) {
-         
-          req.flash('success','Successfully bought product!');
+          req.flash("success", "Successfully bought product!");
           req.session.cart = null;
           res.redirect("/category");
         });
-      
       }
     });
   }
-  
 });
 
 module.exports = router;

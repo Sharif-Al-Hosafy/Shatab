@@ -16,7 +16,8 @@
             
             <p><strong style="color:slategray;">Products: </strong></p><%
             Object.keys(order.cart.items).forEach(function (key){%> <%=
-            order.cart.items[key].qty%>.<strong style="color:slategray;"><%= order.cart.items[key].item.name%></strong> -
+            order.cart.items[key].qty%>.<strong style="color:slategray;"><%= order.cart.items[key].item.name%>(<%=
+                        order.cart.items[key].qtty%> <%= order.cart.items[key].item.unit%>)</strong> -
             <%= order.cart.items[key].price%>L.E.<%});%>
           </p>
         </div>

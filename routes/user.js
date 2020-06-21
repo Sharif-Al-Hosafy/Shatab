@@ -81,17 +81,21 @@ router.get("/logout", function (req, res) {
 //////////////////////////////////////////////////////////
 var ObjectID = require("mongodb").ObjectID;
 router.get("/profile", isLoggedIn, function (req, res, next) {
-  var id = req.user._id;
-
-  Order.find({ user: { id: ObjectID(id) } }, function (err, orders) {
+  var name = req.user.username;
+  var choice = [];
+  Order.find({}, function (err, orders) {
+    for (var i = 0; i < orders.length; i++) {
+      if (orders[i].user.username === name) {
+        choice.push(orders[i]);
+      }
+    }
     if (err) return err;
     var cart;
-    orders.forEach(function (order) {
+    choice.forEach(function (order) {
       cart = new Cart(order.cart);
       order.items = cart.generateArray();
     });
-
-    res.render("user/profile", { orders: orders });
+    res.render("user/profile", { orders: choice });
   });
 });
 

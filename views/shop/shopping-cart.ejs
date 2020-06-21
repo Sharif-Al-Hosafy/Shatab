@@ -12,11 +12,11 @@
                     <div class="card border-">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col"><label id="labelstyle">Product</label></div>    
-                                <div class="col"><label id="labelstyle">Price</label></div>  
-                                <div class="col"><label id="labelstyle">Amount</label></div> 
-                                <div class="col"><label id="labelstyle">quantity</label></div> 
-                                
+                                <div class="col"><label id="labelstyle">Product Name</label></div>  
+                                <div class="col"><label id="labelstyle">Product Amount</label></div>
+                                <div class="col"><label id="labelstyle">Quantity Per Unit</label></div>
+                                <div class="col"><label id="labelstyle">Total Price</label></div> 
+                                <div class="col"><label id="labelstyle">Reduce Quantity</label></div>
                                 <div class="col"></div>
                             </div>    
                         </div>
@@ -24,15 +24,17 @@
                             <% products.forEach(function(products){%>
                             <div class="row">
                                 <div class="col"><%=products.item.name%></div>
-                                <div class="col"><%=products.price%> L.E</div>
                                 <div class="col"><%=products.qty%></div>
-                                <div class="col"><%=products.qtty%></div>
-                                
+                                <div class="col"><%=products.qtty%> <%=products.item.unit%></div>
+                                <div class="col"><%=products.price%> L.E</div>
                                 <div class="col">
                                     <div class="row">
                                         <div class="col"><form action="/product/<%=products.item._id%>/reduce/" method="POST">
-                                            <input type="text" name="quantity" placeholder="enter quantity you want to reduce">
-                                        <i class="fas fa-caret-down fa-lg"></i> </a></div>
+                                            <input type="text" name="quantity" placeholder="Reduce By" required>
+                                        <button class="btn btn-lg" style="background-color:transparent;">
+                                            <i class="fas fa-caret-down fa-lg"></i>
+                                        </button>
+                                    </div>
                                         </form>
                                         <div class="col"><a href="/product/<%=products.item._id%>/remove/">
                                         <i class="fas fa-trash" style="color: red;"></i></a></div>
