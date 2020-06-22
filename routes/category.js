@@ -271,8 +271,8 @@ var smtpTransport = nodemailer.createTransport(
   smtpTransport({
     service: "Gmail",
     auth: {
-      user: "amira.21sakr@gmail.com",
-      pass: "m#ri0m0nir@",
+      user: "shatab.gp.2017sba@gmail.com",
+      pass: "Sh@t@bGB",
     },
   })
 );
@@ -312,11 +312,13 @@ router.post("/checkout", isLoggedIn, function (req, res) {
           to: user.Email, // list of receivers
           subject: "Order tracking", // Subject line
           html:
+            "<h4>Dear "+req.body.name+"</h4>"+
+            "<h4> Here is your order details</h4>"+
             "<h4>Total items you bought: " +
             order.cart.totalQty +
             "<h4>Total pice: " +
             order.cart.totalPrice +
-            "<h4>Order content: <h4> :" +
+            "<h4>Order content :<h4> " +
             "<h3> " +
             orders +
             "</h3>" +
@@ -331,6 +333,34 @@ router.post("/checkout", isLoggedIn, function (req, res) {
             return console.log(error);
           }
           console.log("Message 1 sent: " + info.response);
+        });
+        var mailOptions = {
+          from: '"Shatab" <agustina.will61@ethereal.email>', // sender address
+          to: '"Shatab"<shatab.gp.2017sba@gmail.com>', // list of receivers
+          subject: "New Order", // Subject line
+          html:
+            "<h4>User Name: "+req.body.name+
+            "<h4>User Email "+user.Email+"</h4>"+
+            "<h4> Here is his order details</h4>"+
+            "<h4>Total items you bought: " +
+            order.cart.totalQty +
+            "<h4>Total pice: " +
+            order.cart.totalPrice +
+            "<h4>Order content: <h4> " +
+            "<h3> " +
+            orders +
+            "</h3>" +
+            "<h4>Address you want to receive the order at:</h4>" +
+            "<h3> " +
+            order.address +
+            "</h3>" +
+            "<h4>Required to send to user another email with the arriving time</h4>",
+        };
+        smtpTransport.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            return console.log(error);
+          }
+          console.log("Message 2 sent: " + info.response);
         });
 
         order.save(function(err, result) {                       
