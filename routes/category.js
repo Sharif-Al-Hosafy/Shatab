@@ -278,17 +278,16 @@ var smtpTransport = nodemailer.createTransport(
 );
 //////////////////////////////////////////////////////////////////////////////
 router.post("/checkout", isLoggedIn, function (req, res) {
+  var id=req.user._id;
   if (!req.session.cart) {
     return res.redirect("/shopping-cart");
   } else {
     var cart = new Cart(req.session.cart);
+    User.findById(id,function(err,user){
     Order.create(req.body.order, function (err, order) {
       if (err) {
         console.log(err);
       } else {
-        order.user.id = req.user._id;
-        order.user.username = req.user.username;
-        order.user.Email = req.user.Email;
         order.cart = cart;
         order.city = req.body.city;
         order.region = req.body.region;
@@ -310,7 +309,7 @@ router.post("/checkout", isLoggedIn, function (req, res) {
         });
         var mailOptions = {
           from: '"Shatab" <agustina.will61@ethereal.email>', // sender address
-          to: order.user.Email, // list of receivers
+          to: user.Email, // list of receivers
           subject: "Order tracking", // Subject line
           html:
             "<h4>Total items you bought: " +
@@ -334,15 +333,20 @@ router.post("/checkout", isLoggedIn, function (req, res) {
           console.log("Message 1 sent: " + info.response);
         });
 
-        order.save(function (err, result) {
-          req.flash("success", "Successfully bought product!");
+        order.save(function(err, result) {                       
+          user.order.push(result);
+          user.save();
+          console.log(order);
+          console.log(user);
           req.session.cart = null;
-          res.redirect("/category");
+          res.redirect('/category');
         });
       }
-    });
-  }
 });
+});
+}
+     
+});   
 
 module.exports = router;
 
