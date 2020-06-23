@@ -84,7 +84,6 @@ router.get('/profile',isLoggedIn,function(req, res, next) {
   User.findById(id).populate("order").exec(function(err,founduser){
       var orders=founduser.order;
       if (err) return err;
-          console.log(orders);
           var cart;
           orders.forEach(function(order) {
           cart =  new Cart(order.cart);

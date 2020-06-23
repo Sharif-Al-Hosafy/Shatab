@@ -240,6 +240,7 @@ router.get("/product/:id/remove/", function (req, res) {
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.removeItem(productId);
   req.session.cart = cart;
+ 
   res.redirect("/shopping-cart");
 });
 
@@ -250,7 +251,7 @@ router.get("/shopping-cart", isLoggedIn, function (req, res) {
   }
   var cart = new Cart(req.session.cart);
   var products = cart.generateArray();
-
+ 
   res.render("shop/shopping-cart", {
     products: cart.generateArray(),
     totalPrice: cart.totalPrice,
@@ -313,7 +314,7 @@ router.post("/checkout", isLoggedIn, function (req, res) {
           subject: "Order tracking", // Subject line
           html:
             "<h4>Dear "+req.body.name+"</h4>"+
-            "<h4> Here is your order details</h4>"+
+            "<h4> Here are your order details</h4>"+
             "<h4>Total items you bought: " +
             order.cart.totalQty +
             "<h4>Total pice: " +
@@ -341,8 +342,8 @@ router.post("/checkout", isLoggedIn, function (req, res) {
           html:
             "<h4>User Name: "+req.body.name+
             "<h4>User Email "+user.Email+"</h4>"+
-            "<h4> Here is his order details</h4>"+
-            "<h4>Total items you bought: " +
+            "<h4> Here are his order details</h4>"+
+            "<h4>Total items he bought: " +
             order.cart.totalQty +
             "<h4>Total pice: " +
             order.cart.totalPrice +
@@ -350,7 +351,7 @@ router.post("/checkout", isLoggedIn, function (req, res) {
             "<h3> " +
             orders +
             "</h3>" +
-            "<h4>Address you want to receive the order at:</h4>" +
+            "<h4>Address the client wants to receive the order at:</h4>" +
             "<h3> " +
             order.address +
             "</h3>" +
@@ -366,9 +367,8 @@ router.post("/checkout", isLoggedIn, function (req, res) {
         order.save(function(err, result) {                       
           user.order.push(result);
           user.save();
-          console.log(order);
-          console.log(user);
           req.session.cart = null;
+          req.flash("success", "You bought the items");
           res.redirect('/category');
         });
       }
