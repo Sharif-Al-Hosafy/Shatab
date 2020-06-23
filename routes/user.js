@@ -65,7 +65,6 @@ router.post(
   function (req, res) {
     if (req.session.oldUrl) {
       var oldUrl = req.session.oldUrl;
-      console.log(oldUrl);
       req.session.oldUrl = null;
       res.redirect(oldUrl);
     } else {
@@ -79,24 +78,21 @@ router.get("/logout", function (req, res) {
   res.redirect("/");
 });
 //////////////////////////////////////////////////////////
-router.get('/profile',isLoggedIn,function(req, res, next) {
-  var id=req.user._id;
-  User.findById(id).populate("order").exec(function(err,founduser){
-      var orders=founduser.order;
+router.get("/profile", isLoggedIn, function (req, res, next) {
+  var id = req.user._id;
+  User.findById(id)
+    .populate("order")
+    .exec(function (err, founduser) {
+      var orders = founduser.order;
       if (err) return err;
-          console.log(orders);
-          var cart;
-          orders.forEach(function(order) {
-          cart =  new Cart(order.cart);
-          order.items = cart.generateArray(); 
-          });
-         res.render('user/profile', {orders : orders});
-                 
-             
-         });
-     });
-         
-         
+      var cart;
+      orders.forEach(function (order) {
+        cart = new Cart(order.cart);
+        order.items = cart.generateArray();
+      });
+      res.render("user/profile", { orders: orders });
+    });
+});
 
 //middleware
 function isLoggedIn(req, res, next) {
