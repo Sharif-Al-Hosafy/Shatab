@@ -368,7 +368,7 @@ router.post("/checkout", isLoggedIn, function (req, res) {
           user.order.push(result);
           user.save();
           req.session.cart = null;
-          req.flash("success", "You bought the items");
+          req.flash("success", "You successfully bought the items");
           res.redirect('/category');
         });
       }
