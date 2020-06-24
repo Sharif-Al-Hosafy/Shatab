@@ -28,6 +28,7 @@ module.exports=function Cart(oldCart){
         if(this.items[id].qtty <= 0) {
             delete this.items[id];
             this.totalQty--;
+        
         }
     };
 
@@ -35,6 +36,7 @@ module.exports=function Cart(oldCart){
         this.totalQty -= this.items[id].qty;
         this.totalPrice -= this.items[id].price;
         delete this.items[id];
+    
     };
     this.generateArray=function(){
         var arr=[];
