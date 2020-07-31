@@ -85,7 +85,6 @@ router.get("/profile", isLoggedIn, function (req, res, next) {
     .exec(function (err, founduser) {
       var orders = founduser.order;
       if (err) return err;
-<<<<<<< HEAD
       var cart;
       orders.forEach(function (order) {
         cart = new Cart(order.cart);
@@ -94,20 +93,6 @@ router.get("/profile", isLoggedIn, function (req, res, next) {
       res.render("user/profile", { orders: orders });
     });
 });
-=======
-          var cart;
-          orders.forEach(function(order) {
-          cart =  new Cart(order.cart);
-          order.items = cart.generateArray(); 
-          });
-         res.render('user/profile', {orders : orders});
-                 
-             
-         });
-     });
-         
-         
->>>>>>> e5026d0618e40eea2059d2148211914131b67de5
 
 //middleware
 function isLoggedIn(req, res, next) {
