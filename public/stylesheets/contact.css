@@ -113,8 +113,9 @@
 }
 /*Request page*/
 #requestBody{
-	background-color: #dcdcdc; 
-	padding-bottom: 10px ;
+	background-color: #f2f2f2; 
+	padding-bottom: 50px ;
+	padding-top: 10px;
 	text-align: center;
 }
 #reqTitle{

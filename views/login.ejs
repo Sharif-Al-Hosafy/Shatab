@@ -1,8 +1,9 @@
 <%- include('partials/header'); -%>
-
+<div style="background-color: #f2f2f2; padding-top: 10px; padding-bottom: 10rem;">
+<div class="container-xl">
 <div
-  class="card text-center w-50 mx-auto"
-  style="padding: 20px; margin-top: 10rem;"
+  class="card text-center w-75 mx-auto "
+  style=" padding: 20px;  margin-top: 8rem;"
 >
   <h1 id="title">Login <i class="fas fa-sign-in-alt"></i></h1>
   <div class="row">
@@ -12,7 +13,7 @@
           <input
             id="inputText"
             type="text"
-            class="form-control-lg"
+            class="form-control-lg "
             name="username"
             required
             placeholder="Username"
@@ -23,14 +24,14 @@
             id="inputText"
             type="password"
             name="password"
-            class="form-control-lg"
+            class="form-control-lg "
             required
             placeholder="Password"
           />
         </div>
         <button
           type="submit"
-          class="btn btn-success btn-lg rounded"
+          class="btn btn-success btn-lg rounded "
           id="btnsize"
         >
           Login
@@ -39,5 +40,7 @@
       <p>Don't have an account? <a href="/register">Sign up instead!</a></p>
     </div>
   </div>
+</div>
+</div>
 </div>
 <%- include('partials/footer'); -%>

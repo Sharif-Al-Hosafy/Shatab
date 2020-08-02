@@ -1,6 +1,8 @@
 <%- include('partials/header'); -%>
+<div style="background-color: #f2f2f2; padding-top: 10px;">
+<div class="container-xl">
 <div
-  class="card text-center w-50 mx-auto"
+  class="card text-center w-75 mx-auto"
   style="padding: 20px; margin-top: 6rem;"
 >
   <h1 id="title">Sign Up</h1>
@@ -11,7 +13,7 @@
           <input
             id="inputText"
             type="text"
-            class="form-control-lg"
+            class="form-control-lg w-75"
             name="username"
             required
             placeholder="Username"
@@ -21,7 +23,7 @@
           <input
             id="inputText"
             type="text"
-            class="form-control-lg"
+            class="form-control-lg w-75"
             required
             name="Email"
             placeholder="Email"
@@ -31,7 +33,7 @@
           <input
             id="inputText"
             type="password"
-            class="form-control-lg"
+            class="form-control-lg w-75"
             name="password"
             required
             placeholder="Password"
@@ -41,7 +43,7 @@
           <input
             id="inputText"
             type="text"
-            class="form-control-lg"
+            class="form-control-lg w-75"
             name="phone"
             required
             placeholder="Phone number"
@@ -51,7 +53,7 @@
           <input
             id="inputText"
             type="text"
-            class="form-control-lg"
+            class="form-control-lg w-75"
             name="address"
             required
             placeholder="Address"
@@ -61,14 +63,14 @@
           <input
             id="inputText"
             type="text"
-            class="form-control-lg"
+            class="form-control-lg w-75"
             name="admin"
             placeholder="Admin Code"
           />
         </div>
         <button
           type="submit"
-          class="btn btn-success btn-lg rounded"
+          class="btn btn-success btn-lg w-75 rounded"
           id="btnsize"
         >
           Sign Up
@@ -78,5 +80,6 @@
     </div>
   </div>
 </div>
-
+</div>
+</div>
 <%- include('partials/footer'); -%>
