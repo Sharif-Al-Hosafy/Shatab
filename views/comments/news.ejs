@@ -11,6 +11,7 @@
           >
             <div class="form-group">
               <textarea
+                required
                 name="comment[text]"
                 placeholder="Enter Comment"
                 id="commentArea"
@@ -20,7 +21,14 @@
             </div>
             <div>
               Rating
-              <input type="number" min="0" max="5" value="0" name="rating" />
+              <input
+                required
+                type="number"
+                min="0"
+                max="5"
+                value="0"
+                name="rating"
+              />
             </div>
             <br />
             <button class="btn btn-success btn-sm">Comment</button>

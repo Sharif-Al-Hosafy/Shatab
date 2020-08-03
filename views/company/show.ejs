@@ -29,7 +29,7 @@
                         <p class="card-text" style="color: purple; font-size: 20px;"><strong><%=product.unit%></strong>
                         <p class="card-text" style="color: blue; font-size: 20px;"> <%=product.price%> L.E.</p>
                         <form action="/product/<%=product._id%>/add-to-cart" method="POST">
-                         <input type="text" name="quantity" placeholder="Enter Quantity You need" style="margin-left:-10px; width:180px" required></p>
+                         <input type="number" min="0" name="quantity" placeholder="Enter Quantity You need" style="margin-left:-10px; width:180px" required></p>
                         <button
                             class="btn btn-success btn-block" id="addCart">Add to Cart <i class="fas fa-shopping-cart"></i></a>
                     </form>
