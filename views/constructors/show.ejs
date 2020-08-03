@@ -94,8 +94,8 @@ if(comment.rating == 5) {c5++;}%> <%})%> <% total = ( c1*1 + c2*2 + c3*3 + c4*4
                       <div class="col-8"><p><%=comment.text%></p></div>
 
                       <% if((currentUser &&
-                      comment.author.id.equals(currentUser._id)) ||
-                      currentUser.isAdmin){%>
+                      comment.author.id.equals(currentUser._id)) || (currentUser
+                      && currentUser.isAdmin)){%>
                       <div class="col-4">
                         <div>
                           <form
