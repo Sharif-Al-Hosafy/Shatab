@@ -232,6 +232,10 @@ router.post("/product/:id/reduce/", function (req, res) {
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.reduceByOne(productId, quantity);
   req.session.cart = cart;
+  if(cart.totalPrice==0){
+    req.session.cart = null;
+  }
+ 
   res.redirect("/shopping-cart");
 });
 
@@ -240,7 +244,9 @@ router.get("/product/:id/remove/", function (req, res) {
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.removeItem(productId);
   req.session.cart = cart;
- // req.session.cart = null;
+  if(cart.totalPrice==0){
+    req.session.cart = null;
+  }
   res.redirect("/shopping-cart");
 });
 
