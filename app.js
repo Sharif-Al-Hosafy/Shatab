@@ -50,11 +50,11 @@ app.use(function (req, res, next) {
   res.locals.session = req.session;
   next();
 });
-// mongoose.connect("mongodb://localhost/shatabProj");
+ mongoose.connect("mongodb://localhost/shatabProj");
 
-mongoose.connect(
+/*mongoose.connect(
   "mongodb+srv://sharif:allahraby1234@warehouse-jrtie.mongodb.net/shatabProj?retryWrites=true&w=majority"
-);
+);*/
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");

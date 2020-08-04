@@ -43,7 +43,7 @@ router.post("/register", function (req, res) {
         req.session.oldUrl = null;
         res.redirect(oldUrl);
       } else {
-        res.redirect("/shop");
+        res.redirect("/category");
       }
     });
   });
