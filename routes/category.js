@@ -240,22 +240,24 @@ router.get("/product/:id/remove/", function (req, res) {
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.removeItem(productId);
   req.session.cart = cart;
- 
+ // req.session.cart = null;
   res.redirect("/shopping-cart");
 });
 
 ///////////////////////////////////////////////////
 router.get("/shopping-cart", isLoggedIn, function (req, res) {
-  if (!req.session.cart) {
-    return res.render("shop/shopping-cart", { products: null });
-  }
-  var cart = new Cart(req.session.cart);
-  var products = cart.generateArray();
+    if (!req.session.cart) {
+      return res.render("shop/shopping-cart", { products: null });
+    }
+    var cart = new Cart(req.session.cart);
+    var products = cart.generateArray();
+   
+    res.render("shop/shopping-cart", {
+      products: cart.generateArray(),
+      totalPrice: cart.totalPrice,
+    });
+  
  
-  res.render("shop/shopping-cart", {
-    products: cart.generateArray(),
-    totalPrice: cart.totalPrice,
-  });
 });
 
 /////////////////////////////////////////////////////////////////////////

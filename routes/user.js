@@ -75,6 +75,7 @@ router.post(
 //logout route
 router.get("/logout", function (req, res) {
   req.logout();
+  req.session.cart = null;
   res.redirect("/");
 });
 //////////////////////////////////////////////////////////
