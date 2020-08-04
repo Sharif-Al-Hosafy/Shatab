@@ -101,8 +101,8 @@ function checkCommentOwnership(req, res, next) {
       if (err) {
         res.redirect("back");
       } else {
-        //does user own the comment?
-        if (foundComment.author.id.equals(req.user._id)) {
+        //does user own the comment or admin?
+        if (foundComment.author.id.equals(req.user._id)|| req.user.isAdmin) {
           next();
         } else {
           res.redirect("back");
