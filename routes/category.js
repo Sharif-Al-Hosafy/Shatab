@@ -232,10 +232,10 @@ router.post("/product/:id/reduce/", function (req, res) {
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.reduceByOne(productId, quantity);
   req.session.cart = cart;
-  if(cart.totalPrice==0){
+  if (cart.totalPrice == 0) {
     req.session.cart = null;
   }
- 
+
   res.redirect("/shopping-cart");
 });
 
@@ -244,7 +244,7 @@ router.get("/product/:id/remove/", function (req, res) {
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.removeItem(productId);
   req.session.cart = cart;
-  if(cart.totalPrice==0){
+  if (cart.totalPrice == 0) {
     req.session.cart = null;
   }
   res.redirect("/shopping-cart");
@@ -252,18 +252,16 @@ router.get("/product/:id/remove/", function (req, res) {
 
 ///////////////////////////////////////////////////
 router.get("/shopping-cart", isLoggedIn, function (req, res) {
-    if (!req.session.cart) {
-      return res.render("shop/shopping-cart", { products: null });
-    }
-    var cart = new Cart(req.session.cart);
-    var products = cart.generateArray();
-   
-    res.render("shop/shopping-cart", {
-      products: cart.generateArray(),
-      totalPrice: cart.totalPrice,
-    });
-  
- 
+  if (!req.session.cart) {
+    return res.render("shop/shopping-cart", { products: null });
+  }
+  var cart = new Cart(req.session.cart);
+  var products = cart.generateArray();
+
+  res.render("shop/shopping-cart", {
+    products: cart.generateArray(),
+    totalPrice: cart.totalPrice,
+  });
 });
 
 /////////////////////////////////////////////////////////////////////////
@@ -287,104 +285,108 @@ var smtpTransport = nodemailer.createTransport(
 );
 //////////////////////////////////////////////////////////////////////////////
 router.post("/checkout", isLoggedIn, function (req, res) {
-  var id=req.user._id;
+  var id = req.user._id;
   if (!req.session.cart) {
     return res.redirect("/shopping-cart");
   } else {
     var cart = new Cart(req.session.cart);
-    User.findById(id,function(err,user){
-    Order.create(req.body.order, function (err, order) {
-      if (err) {
-        console.log(err);
-      } else {
-        order.cart = cart;
-        order.city = req.body.city;
-        order.region = req.body.region;
-        order.address = req.body.address;
-        order.mobilenumber = req.body.mobilenumber;
-        order.cart.items = cart.generateArray();
-        var orders = [];
-        Object.keys(order.cart.items).forEach(function (key) {
-          orders.push(
-            "item name",
-            order.cart.items[key].item.name,
-            "Amount of this item",
-            order.cart.items[key].qty,
-            "Quantity you ordered of this item",
-            order.cart.items[key].qtty,
-            "price",
-            order.cart.items[key].price
-          );
-        });
-        var mailOptions = {
-          from: '"Shatab" <agustina.will61@ethereal.email>', // sender address
-          to: user.Email, // list of receivers
-          subject: "Order tracking", // Subject line
-          html:
-            "<h4>Dear "+req.body.name+"</h4>"+
-            "<h4> Here are your order details</h4>"+
-            "<h4>Total items you bought: " +
-            order.cart.totalQty +
-            "<h4>Total pice: " +
-            order.cart.totalPrice +
-            "<h4>Order content :<h4> " +
-            "<h3> " +
-            orders +
-            "</h3>" +
-            "<h4>Address you want to receive the order at:</h4>" +
-            "<h3> " +
-            order.address +
-            "</h3>" +
-            "<h4>your order will arrive in a week so wait for another email with the tracking of the order:</h4>",
-        };
-        smtpTransport.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            return console.log(error);
-          }
-          console.log("Message 1 sent: " + info.response);
-        });
-        var mailOptions = {
-          from: '"Shatab" <agustina.will61@ethereal.email>', // sender address
-          to: '"Shatab"<shatab.gp.2017sba@gmail.com>', // list of receivers
-          subject: "New Order", // Subject line
-          html:
-            "<h4>User Name: "+req.body.name+
-            "<h4>User Email "+user.Email+"</h4>"+
-            "<h4> Here are his order details</h4>"+
-            "<h4>Total items he bought: " +
-            order.cart.totalQty +
-            "<h4>Total pice: " +
-            order.cart.totalPrice +
-            "<h4>Order content: <h4> " +
-            "<h3> " +
-            orders +
-            "</h3>" +
-            "<h4>Address the client wants to receive the order at:</h4>" +
-            "<h3> " +
-            order.address +
-            "</h3>" +
-            "<h4>Required to send to user another email with the arriving time</h4>",
-        };
-        smtpTransport.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            return console.log(error);
-          }
-          console.log("Message 2 sent: " + info.response);
-        });
+    User.findById(id, function (err, user) {
+      Order.create(req.body.order, function (err, order) {
+        if (err) {
+          console.log(err);
+        } else {
+          order.cart = cart;
+          order.city = req.body.city;
+          order.region = req.body.region;
+          order.address = req.body.address;
+          order.mobilenumber = req.body.mobilenumber;
+          order.cart.items = cart.generateArray();
+          var orders = [];
+          Object.keys(order.cart.items).forEach(function (key) {
+            orders.push(
+              "item name",
+              order.cart.items[key].item.name,
+              "Amount of this item",
+              order.cart.items[key].qty,
+              "Quantity you ordered of this item",
+              order.cart.items[key].qtty,
+              "price",
+              order.cart.items[key].price
+            );
+          });
+          var mailOptions = {
+            from: '"Shatab" <agustina.will61@ethereal.email>', // sender address
+            to: user.Email, // list of receivers
+            subject: "Order tracking", // Subject line
+            html:
+              "<h4>Dear " +
+              req.body.name +
+              "</h4>" +
+              "<h4> Here are your order details</h4>" +
+              "<h4>Total items you bought: " +
+              order.cart.totalQty +
+              "<h4>Total pice: " +
+              order.cart.totalPrice +
+              "<h4>Order content :<h4> " +
+              "<h3> " +
+              orders +
+              "</h3>" +
+              "<h4>Address you want to receive the order at:</h4>" +
+              "<h3> " +
+              order.address +
+              "</h3>" +
+              "<h4>your order will arrive in a week so wait for another email with the tracking of the order:</h4>",
+          };
+          smtpTransport.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              return console.log(error);
+            }
+            console.log("Message 1 sent: " + info.response);
+          });
+          var mailOptions = {
+            from: '"Shatab" <agustina.will61@ethereal.email>', // sender address
+            to: '"Shatab"<shatab.gp.2017sba@gmail.com>', // list of receivers
+            subject: "New Order", // Subject line
+            html:
+              "<h4>User Name: " +
+              req.body.name +
+              "<h4>User Email " +
+              user.Email +
+              "</h4>" +
+              "<h4> Here are his order details</h4>" +
+              "<h4>Total items he bought: " +
+              order.cart.totalQty +
+              "<h4>Total pice: " +
+              order.cart.totalPrice +
+              "<h4>Order content: <h4> " +
+              "<h3> " +
+              orders +
+              "</h3>" +
+              "<h4>Address the client wants to receive the order at:</h4>" +
+              "<h3> " +
+              order.address +
+              "</h3>" +
+              "<h4>Required to send to user another email with the arriving time</h4>",
+          };
+          smtpTransport.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              return console.log(error);
+            }
+            console.log("Message 2 sent: " + info.response);
+          });
 
-        order.save(function(err, result) {                       
-          user.order.push(result);
-          user.save();
-          req.session.cart = null;
-          req.flash("success", "You successfully bought the items");
-          res.redirect('/category');
-        });
-      }
+          order.save(function (err, result) {
+            user.order.push(result);
+            user.save();
+            req.session.cart = null;
+            req.flash("success", "You successfully bought the items");
+            res.redirect("/category");
+          });
+        }
+      });
+    });
+  }
 });
-});
-}
-     
-});   
 
 module.exports = router;
 
