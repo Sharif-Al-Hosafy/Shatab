@@ -41,6 +41,16 @@ router.post("/register", function (req, res) {
         res.redirect("/category");
       });
     }
+
+    /*passport.authenticate("local")(req, res, function () {
+      if (req.session.oldUrl) {
+        var oldUrl = req.session.oldUrl;
+        req.session.oldUrl = null;
+        res.redirect(oldUrl);
+      } else {
+        res.redirect("/category");
+      }
+    });*/
   });
 });
 
