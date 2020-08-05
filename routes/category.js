@@ -230,11 +230,13 @@ router.post("/product/:id/reduce/", function (req, res) {
   var productId = req.params.id;
   var quantity = parseFloat(req.body.quantity);
   var cart = new Cart(req.session.cart ? req.session.cart : {});
+  if(quantity<=cart.items[productId].qtty){
   cart.reduceByOne(productId, quantity);
   req.session.cart = cart;
   if(cart.totalPrice==0){
     req.session.cart = null;
   }
+}
  
   res.redirect("/shopping-cart");
 });
